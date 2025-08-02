@@ -19,6 +19,13 @@
   box-shadow: inset 0 0 0 1px var(--color-secondary);
 }
 
+.storybook-button--tertiary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: none;
+  text-decoration: underline;
+}
+
 .storybook-button--small {
   padding: var(--spacing-sm) var(--spacing-md);
   font-size: var(--font-size-sm);
@@ -32,4 +39,28 @@
 .storybook-button--large {
   padding: var(--spacing-lg) var(--spacing-lg);
   font-size: var(--font-size-lg);
+}
+
+/* Disabled state */
+.storybook-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Hover states */
+.storybook-button--primary:hover:not(.storybook-button--disabled) {
+  background-color: var(--color-primary);
+  filter: brightness(0.9);
+}
+
+.storybook-button--secondary:hover:not(.storybook-button--disabled) {
+  background-color: var(--color-secondary);
+  opacity: 0.8;
+}
+
+.storybook-button--tertiary:hover:not(.storybook-button--disabled) {
+  color: var(--color-primary);
+  opacity: 0.8;
+  text-decoration: none;
 }

@@ -1,6 +1,9 @@
 import Image, { type ImageProps } from "next/image";
 import { Button } from '@repo/ui';
+import { ThemeToggle } from '@repo/ui';
 import styles from "./page.module.css";
+import '@repo/ui/theme/tokens.css'; // fallback
+import './styles/theme.css'; 
 
 type Props = Omit<ImageProps, "src"> & {
   srcLight: string;
@@ -14,7 +17,7 @@ const ThemeImage = (props: Props) => {
     <>
       <Image {...rest} src={srcLight} className="imgLight" />
       <Image {...rest} src={srcDark} className="imgDark" />
-      <Button primary label="Click me pie face ;)"/>
+      <Button variant="primary" label="Click me pie face ;)" />
     </>
   );
 };
@@ -65,6 +68,7 @@ export default function Home() {
           </a>
         </div>
         <Button label="Open alert" />
+        <ThemeToggle />
       </main>
       <footer className={styles.footer}>
         <a

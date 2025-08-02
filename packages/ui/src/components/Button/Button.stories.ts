@@ -17,6 +17,14 @@ const meta = {
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
     backgroundColor: { control: 'color' },
+    variant: { 
+      control: { type: 'select' },
+      options: ['primary', 'secondary', 'tertiary']
+    },
+    size: { 
+      control: { type: 'select' },
+      options: ['small', 'medium', 'large']
+    },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
   args: { onClick: fn() },
@@ -28,13 +36,21 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
   args: {
-    primary: true,
+    variant: 'primary',
     label: 'Button',
   },
 };
 
 export const Secondary: Story = {
   args: {
+    variant: 'secondary',
+    label: 'Button',
+  },
+};
+
+export const Tertiary: Story = {
+  args: {
+    variant: 'tertiary',
     label: 'Button',
   },
 };
@@ -55,7 +71,9 @@ export const Small: Story = {
 
 export const MaddysStory: Story = {
   args: {
-    primary: false,
+    variant: 'secondary',
     label: "Button"
   }
 };
+
+

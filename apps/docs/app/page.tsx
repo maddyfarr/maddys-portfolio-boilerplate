@@ -63,7 +63,7 @@ export default function Home() {
             Read our docs
           </a>
         </div>
-        <Button label="Open alert" primary={true} size="large" />
+        <Button label="Open alert" variant="primary" size="large" />
       </main>
       <footer className={styles.footer}>
         <a
