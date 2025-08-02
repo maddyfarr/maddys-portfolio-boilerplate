@@ -1,4 +1,5 @@
 import './button.css';
+import { colors, spacing, radii } from '../../theme';
 
 export interface ButtonProps {
   /** Is this the principal call to action on the page? */
@@ -22,11 +23,19 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+
+  const style = {
+    backgroundColor: primary ? colors.primary : colors.secondary,
+    color: primary ? '#ffffff' : colors.text,
+    padding: spacing.md,
+    borderRadius: radii.md,
+  }
+
   return (
     <button
       type="button"
       className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={{ backgroundColor }}
+      style={style}
       {...props}
     >
       {label}

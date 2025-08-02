@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Header } from './Header';
+import { Header } from '../Header/Header';
 import './page.css';
-import { Card, CardBody, CardHeader } from '../components/Card';
+import { Card, CardBody, CardHeader } from '../Card';
 
 type User = {
   name: string;
