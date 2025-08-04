@@ -1,5 +1,13 @@
 import Image, { type ImageProps } from "next/image";
-import { Button, Typography, Navigation } from '@repo/ui';
+import { 
+  Button, 
+  Typography, 
+  Navigation, 
+  ProjectCards, 
+  SkillsGrid, 
+  SocialLinks,
+  BlogSection
+} from '@repo/ui';
 import styles from "./page.module.css";
 import logo from '../../public/logo.svg';
 
@@ -57,67 +65,64 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Skills Section */}
+      <section id="skills" className={styles.section}>
+        <div className={styles.sectionContent}>
+          <SkillsGrid className="w-full" />
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section id="blog" className={styles.section}>
+        <div className={styles.sectionContent}>
+          <BlogSection 
+            mediumUsername="@mad-about-software" 
+            className="w-full"
+            maxPosts={3}
+          />
+        </div>
+      </section>
+
       {/* Experience Section */}
       <section id="experience" className={styles.section}>
         <div className={styles.sectionContent}>
           <Typography variant="title" className="text-center">Experience</Typography>
-          <Typography variant="body" className="text-center">
-            Here's a timeline of my professional journey...
-          </Typography>
+          <div className="space-y-6 w-full max-w-2xl">
+            <div className="border-l-4 border-primary pl-6">
+              <h3 className="text-lg font-semibold">Senior Software Engineer</h3>
+              <p className="text-sm text-gray-600">2023 - Present</p>
+              <p className="mt-2">Leading development of modern web applications using React, TypeScript, and Node.js.</p>
+            </div>
+            <div className="border-l-4 border-primary pl-6">
+              <h3 className="text-lg font-semibold">Full Stack Developer</h3>
+              <p className="text-sm text-gray-600">2021 - 2023</p>
+              <p className="mt-2">Built scalable web applications and APIs, working with React, Node.js, and PostgreSQL.</p>
+            </div>
+            <div className="border-l-4 border-primary pl-6">
+              <h3 className="text-lg font-semibold">Frontend Developer</h3>
+              <p className="text-sm text-gray-600">2020 - 2021</p>
+              <p className="mt-2">Created responsive user interfaces and improved user experience across multiple projects.</p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Projects Section */}
       <section id="projects" className={styles.section}>
         <div className={styles.sectionContent}>
-          <Typography variant="title" className="text-center">Projects</Typography>
-          <Typography variant="body" className="text-center">
-            Check out some of my recent work...
-          </Typography>
+          <ProjectCards className="w-full" />
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className={styles.section}>
-        <div className={styles.sectionContent}>
-          <Typography variant="title" className="text-center">Get In Touch</Typography>
-          <Typography variant="body" className="text-center">
-            I'm always interested in new opportunities and collaborations.
-          </Typography>
-          <div style={{ marginTop: '20px' }}>
-            <Button variant="primary" label="Say Hello" />
-          </div>
-        </div>
-      </section>
+      {/* <ContactForm /> */}
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.com?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.com →
-        </a>
+        <div style={{ textAlign: 'center', padding: '2rem 0' }}>
+          <p className="mb-4" style={{ color: 'var(--color-text-secondary)' }}>
+            © 2024 Madeleine Farr. Built with ❤️ using Next.js and TypeScript.
+          </p>
+          <SocialLinks variant="minimal" />
+        </div>
       </footer>
     </div>
   );
