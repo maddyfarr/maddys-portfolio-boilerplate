@@ -1,9 +1,7 @@
 import Image, { type ImageProps } from "next/image";
-import { Button } from '@repo/ui';
-import { ThemeToggle } from '@repo/ui';
+import { Button, Typography, Navigation } from '@repo/ui';
 import styles from "./page.module.css";
-import '@repo/ui/theme/tokens.css'; // fallback
-import './styles/theme.css'; 
+import logo from '../../public/logo.svg';
 
 type Props = Omit<ImageProps, "src"> & {
   srcLight: string;
@@ -17,7 +15,6 @@ const ThemeImage = (props: Props) => {
     <>
       <Image {...rest} src={srcLight} className="imgLight" />
       <Image {...rest} src={srcDark} className="imgDark" />
-      <Button variant="primary" label="Click me pie face ;)" />
     </>
   );
 };
@@ -25,51 +22,73 @@ const ThemeImage = (props: Props) => {
 export default function Home() {
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+      <Navigation />
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.com/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+      {/* Hero Section */}
+      <section id="home" className={styles.hero}>
+        <div className={styles.heroContent}>
+          <Image
+            className={styles.logo}
+            src="/logo.png"
+            alt="Madeleine Farr"
+            width={120}
+            height={120}
+            priority
+          />
+          <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            <Typography variant="title" className="text-center">Madeleine Farr</Typography>
+            <Typography variant="subtitle" className="text-center">Software Engineer</Typography>
+          </div>
+          <div className={styles.ctas}>
+            <Button variant="primary" label="View My Work" />
+            <Button variant="secondary" label="Download Resume" />
+          </div>
         </div>
-        <Button label="Open alert" />
-        <ThemeToggle />
-      </main>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className={styles.section}>
+        <div className={styles.sectionContent}>
+          <Typography variant="title" className="text-center">About Me</Typography>
+          <Typography variant="body" className="text-center">
+            I'm a passionate software engineer who loves building beautiful, accessible user experiences.
+            I specialize in React, TypeScript, and modern web technologies.
+          </Typography>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className={styles.section}>
+        <div className={styles.sectionContent}>
+          <Typography variant="title" className="text-center">Experience</Typography>
+          <Typography variant="body" className="text-center">
+            Here's a timeline of my professional journey...
+          </Typography>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className={styles.section}>
+        <div className={styles.sectionContent}>
+          <Typography variant="title" className="text-center">Projects</Typography>
+          <Typography variant="body" className="text-center">
+            Check out some of my recent work...
+          </Typography>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className={styles.section}>
+        <div className={styles.sectionContent}>
+          <Typography variant="title" className="text-center">Get In Touch</Typography>
+          <Typography variant="body" className="text-center">
+            I'm always interested in new opportunities and collaborations.
+          </Typography>
+          <div style={{ marginTop: '20px' }}>
+            <Button variant="primary" label="Say Hello" />
+          </div>
+        </div>
+      </section>
       <footer className={styles.footer}>
         <a
           href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"

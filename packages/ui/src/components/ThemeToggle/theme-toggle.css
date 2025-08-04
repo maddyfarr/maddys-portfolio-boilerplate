@@ -1,0 +1,141 @@
+/* Theme Toggle Component Styles */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-secondary);
+  border-radius: var(--radius-lg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.theme-toggle:hover::before {
+  opacity: 1;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.05);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-toggle__icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sun Icon */
+.theme-toggle__sun {
+  position: absolute;
+  color: var(--color-accent);
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle__sun--active {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Moon Icon */
+.theme-toggle__moon {
+  position: absolute;
+  color: var(--color-primary);
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle__moon--active {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Hover effects */
+.theme-toggle:hover .theme-toggle__sun {
+  color: #f59e0b;
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.4));
+}
+
+.theme-toggle:hover .theme-toggle__moon {
+  color: #3b82f6;
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4));
+}
+
+/* Focus styles for accessibility */
+.theme-toggle:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.theme-toggle:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Dark mode adjustments */
+.dark .theme-toggle::before {
+  background: var(--color-secondary);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .theme-toggle {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .theme-toggle__icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .theme-toggle__sun,
+  .theme-toggle__moon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Animation for theme transition */
+.theme-toggle__sun,
+.theme-toggle__moon {
+  animation: themeToggleBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes themeToggleBounce {
+  0% {
+    transform: scale(0.3) rotate(-90deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(0deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+} 

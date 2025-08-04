@@ -1,3 +1,6 @@
+"use client";
+
+import '../../theme/tokens.css';
 import './button.css';
 
 export interface ButtonProps {

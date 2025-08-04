@@ -6,14 +6,52 @@
   --button-primary-hover: #383838;
   --button-secondary-hover: #f2f2f2;
 
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
+  min-height: 100vh;
   font-synthesis: none;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-secondary) 100%);
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+  max-width: 600px;
+}
+
+/* Section Styles */
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background: var(--color-bg);
+}
+
+.section:nth-child(even) {
+  background: var(--color-secondary);
+}
+
+.sectionContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+  max-width: 800px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -147,17 +185,17 @@ button.secondary {
 }
 
 @media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
+  .hero {
+    padding: 1rem;
   }
 
-  .main {
-    align-items: center;
+  .section {
+    padding: 2rem 1rem;
   }
 
-  .main ol {
-    text-align: center;
+  .heroContent,
+  .sectionContent {
+    max-width: 100%;
   }
 
   .ctas {
