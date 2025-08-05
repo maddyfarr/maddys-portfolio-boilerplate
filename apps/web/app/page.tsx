@@ -1,3 +1,5 @@
+"use client";
+
 import Image, { type ImageProps } from "next/image";
 import { 
   Button, 
@@ -6,7 +8,11 @@ import {
   ProjectCards, 
   SkillsGrid, 
   SocialLinks,
-  BlogSection
+  BlogSection,
+  CurrentlyWorkingOn,
+  GitHubActivityBubbles,
+  LanguageProvider,
+  useLanguage
 } from '@repo/ui';
 import styles from "./page.module.css";
 import logo from '../../public/logo.svg';
@@ -27,10 +33,26 @@ const ThemeImage = (props: Props) => {
   );
 };
 
-export default function Home() {
+function HomeContent() {
+  const { t } = useLanguage();
+  
   return (
     <div className={styles.page}>
       <Navigation />
+
+      {/* GitHub Activity Bubbles - Top Right Corner */}
+      <div style={{ 
+        position: 'fixed', 
+        top: '20px', 
+        right: '20px', 
+        zIndex: 1000,
+        pointerEvents: 'none'
+      }}>
+        <GitHubActivityBubbles 
+          githubUsername="maddyfarr"
+          maxBubbles={3}
+        />
+      </div>
 
       {/* Hero Section */}
       <section id="home" className={styles.hero}>
@@ -44,12 +66,12 @@ export default function Home() {
             priority
           />
           <div style={{ textAlign: 'center', marginTop: '20px' }}>
-            <Typography variant="title" className="text-center">Madeleine Farr</Typography>
-            <Typography variant="subtitle" className="text-center">Software Engineer</Typography>
+            <Typography variant="title" className="text-center">{t('hero.title')}</Typography>
+            <Typography variant="subtitle" className="text-center">{t('hero.subtitle')}</Typography>
           </div>
           <div className={styles.ctas}>
-            <Button variant="primary" label="View My Work" />
-            <Button variant="secondary" label="Download Resume" />
+            <Button variant="primary" label={t('hero.viewWork')} />
+            <Button variant="secondary" label={t('hero.downloadResume')} />
           </div>
         </div>
       </section>
@@ -57,11 +79,43 @@ export default function Home() {
       {/* About Section */}
       <section id="about" className={styles.section}>
         <div className={styles.sectionContent}>
-          <Typography variant="title" className="text-center">About Me</Typography>
+          <Typography variant="title" className="text-center">{t('about.title')}</Typography>
           <Typography variant="body" className="text-center">
-            I'm a passionate software engineer who loves building beautiful, accessible user experiences.
-            I specialize in React, TypeScript, and modern web technologies.
+            {t('about.description')}
           </Typography>
+        </div>
+      </section>
+
+      {/* Currently Working On Section */}
+      <section id="currently-working" className={styles.section}>
+        <div className={styles.sectionContent}>
+          <CurrentlyWorkingOn 
+            className="w-full"
+            githubUsername="maddyfarr"
+            customActivities={[
+              {
+                type: 'project',
+                title: 'Portfolio Website Enhancement',
+                description: 'Adding new features like language switching, GitHub integration, and interactive components.',
+                status: 'in-progress',
+                tech: ['React', 'TypeScript', 'Next.js', 'Design Tokens']
+              },
+              {
+                type: 'learning',
+                title: 'Advanced React Patterns',
+                description: 'Exploring compound components, render props, and advanced state management techniques.',
+                status: 'in-progress',
+                tech: ['React', 'TypeScript', 'Advanced Patterns']
+              },
+              {
+                type: 'experiment',
+                title: 'AI-Powered Code Assistant',
+                description: 'Building a tool that helps developers write better code using AI suggestions.',
+                status: 'planning',
+                tech: ['Python', 'OpenAI API', 'React', 'FastAPI']
+              }
+            ]}
+          />
         </div>
       </section>
 
@@ -86,22 +140,110 @@ export default function Home() {
       {/* Experience Section */}
       <section id="experience" className={styles.section}>
         <div className={styles.sectionContent}>
-          <Typography variant="title" className="text-center">Experience</Typography>
-          <div className="space-y-6 w-full max-w-2xl">
-            <div className="border-l-4 border-primary pl-6">
-              <h3 className="text-lg font-semibold">Senior Software Engineer</h3>
-              <p className="text-sm text-gray-600">2023 - Present</p>
-              <p className="mt-2">Leading development of modern web applications using React, TypeScript, and Node.js.</p>
+          <Typography variant="title" className="text-center">{t('experience.title')}</Typography>
+          <div style={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            gap: 'var(--spacing-lg)', 
+            width: '100%', 
+            maxWidth: '42rem',
+            margin: '0 auto'
+          }}>
+            <div style={{ 
+              borderLeft: '4px solid var(--color-primary)', 
+              paddingLeft: 'var(--spacing-lg)',
+              marginLeft: 'var(--spacing-md)'
+            }}>
+                              <h3 style={{ 
+                  fontSize: 'var(--font-size-lg)', 
+                  fontWeight: '600',
+                  color: 'var(--color-text-primary)',
+                  marginBottom: 'var(--spacing-xs)'
+                }}>
+                  {t('experience.seniorEngineer')}
+                </h3>
+              <p style={{ 
+                fontSize: 'var(--font-size-sm)', 
+                color: 'var(--color-text-secondary)',
+                marginBottom: 'var(--spacing-sm)'
+              }}>
+                2025 - Present
+              </p>
+                              <p style={{ 
+                  color: 'var(--color-text-secondary)',
+                  lineHeight: '1.6'
+                }}>
+                  {t('experience.seniorDescription')}
+                </p>
             </div>
-            <div className="border-l-4 border-primary pl-6">
-              <h3 className="text-lg font-semibold">Full Stack Developer</h3>
-              <p className="text-sm text-gray-600">2021 - 2023</p>
-              <p className="mt-2">Built scalable web applications and APIs, working with React, Node.js, and PostgreSQL.</p>
+            <div style={{ 
+              borderLeft: '4px solid var(--color-primary)', 
+              paddingLeft: 'var(--spacing-lg)',
+              marginLeft: 'var(--spacing-md)'
+            }}>
+                              <h3 style={{ 
+                  fontSize: 'var(--font-size-lg)', 
+                  fontWeight: '600',
+                  color: 'var(--color-text-primary)',
+                  marginBottom: 'var(--spacing-xs)'
+                }}>
+                  {t('experience.fullStackEngineer')}
+                </h3>
+              <p style={{ 
+                fontSize: 'var(--font-size-sm)', 
+                color: 'var(--color-text-secondary)',
+                marginBottom: 'var(--spacing-sm)'
+              }}>
+                2022 - 2025
+              </p>
+                              <p style={{ 
+                  color: 'var(--color-text-secondary)',
+                  lineHeight: '1.6'
+                }}>
+                  {t('experience.fullStackDescription')}
+                </p>
             </div>
-            <div className="border-l-4 border-primary pl-6">
-              <h3 className="text-lg font-semibold">Frontend Developer</h3>
-              <p className="text-sm text-gray-600">2020 - 2021</p>
-              <p className="mt-2">Created responsive user interfaces and improved user experience across multiple projects.</p>
+            <div style={{ 
+              borderLeft: '4px solid var(--color-primary)', 
+              paddingLeft: 'var(--spacing-lg)',
+              marginLeft: 'var(--spacing-md)'
+            }}>
+                              <h3 style={{ 
+                  fontSize: 'var(--font-size-lg)', 
+                  fontWeight: '600',
+                  color: 'var(--color-text-primary)',
+                  marginBottom: 'var(--spacing-xs)'
+                }}>
+                  {t('experience.frontendDeveloper')}
+                </h3>
+              <p style={{ 
+                fontSize: 'var(--font-size-sm)', 
+                color: 'var(--color-text-secondary)',
+                marginBottom: 'var(--spacing-sm)'
+              }}>
+                2021 - 2022
+              </p>
+                              <p style={{ 
+                  color: 'var(--color-text-secondary)',
+                  lineHeight: '1.6'
+                }}>
+                  {t('experience.frontendDescription')}
+                </p>
+                              <h3 style={{ 
+                  fontSize: 'var(--font-size-lg)', 
+                  fontWeight: '600',
+                  color: 'var(--color-text-primary)',
+                  marginBottom: 'var(--spacing-xs)'
+                }}>
+                  {t('experience.internship')}
+                </h3>
+              <p style={{ 
+                fontSize: 'var(--font-size-sm)', 
+                color: 'var(--color-text-secondary)',
+                marginBottom: 'var(--spacing-sm)'
+              }}>
+                2020 - 2021
+              </p>
             </div>
           </div>
         </div>
@@ -119,11 +261,19 @@ export default function Home() {
       <footer className={styles.footer}>
         <div style={{ textAlign: 'center', padding: '2rem 0' }}>
           <p className="mb-4" style={{ color: 'var(--color-text-secondary)' }}>
-            © 2024 Madeleine Farr. Built with ❤️ using Next.js and TypeScript.
+            {t('footer.copyright')}
           </p>
           <SocialLinks variant="minimal" />
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <LanguageProvider>
+      <HomeContent />
+    </LanguageProvider>
   );
 }

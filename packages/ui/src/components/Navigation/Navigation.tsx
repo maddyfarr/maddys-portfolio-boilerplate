@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { cn } from '../../utils/cn';
 import { Button } from '../Button/Button';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
+import { LanguageSwitcher } from '../LanguageSwitcher/LanguageSwitcher';
+import { useLanguage } from '../../context/LanguageContext';
 import { AnimatedLogo } from '../AnimatedLogo/AnimatedLogo';
 import './navigation.css';
 
@@ -22,17 +24,22 @@ interface NavigationProps {
 
 export const Navigation = ({
   className,
-  links = [
-    { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#blog', label: 'Blog' },
-    { href: '#experience', label: 'Experience' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#contact', label: 'Contact' }
-  ],
+  links,
   logo = 'MF'
 }: NavigationProps) => {
+  const { t } = useLanguage();
+  
+  const defaultLinks: NavLink[] = [
+    { href: '#home', label: t('nav.home') },
+    { href: '#about', label: t('nav.about') },
+    { href: '#skills', label: t('nav.skills') },
+    { href: '#blog', label: t('nav.blog') },
+    { href: '#experience', label: t('nav.experience') },
+    { href: '#projects', label: t('nav.projects') },
+    { href: '#contact', label: t('nav.contact') }
+  ];
+
+  const navLinks = links || defaultLinks;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -89,7 +96,7 @@ export const Navigation = ({
         {/* Desktop Navigation */}
         <div className="navigation__desktop">
           <ul className="navigation__links">
-            {links.map((link) => (
+            {navLinks.map((link) => (
               <li key={link.href} className="navigation__item">
                 <button
                   onClick={() => handleNavClick(link.href)}
@@ -106,6 +113,7 @@ export const Navigation = ({
           </ul>
 
           <div className="navigation__actions">
+            <LanguageSwitcher />
             <ThemeToggle />
             <Button
               variant="primary"
@@ -136,7 +144,7 @@ export const Navigation = ({
           isMenuOpen && 'navigation__mobile--open'
         )}>
           <ul className="navigation__mobile-links">
-            {links.map((link) => (
+            {navLinks.map((link) => (
               <li key={link.href} className="navigation__mobile-item">
                 <button
                   onClick={() => handleNavClick(link.href)}

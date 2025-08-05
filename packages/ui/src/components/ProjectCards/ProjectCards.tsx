@@ -109,31 +109,72 @@ export function ProjectCards({
   });
 
   return (
-    <section className={cn("py-16", className)}>
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-4" style={{ color: 'var(--color-text-primary)' }}>
+    <section 
+      className={cn(className)}
+      style={{ 
+        paddingTop: 'var(--spacing-xl)', 
+        paddingBottom: 'var(--spacing-xl)' 
+      }}
+    >
+      <div style={{ 
+        maxWidth: '1200px', 
+        margin: '0 auto', 
+        paddingLeft: 'var(--spacing-md)', 
+        paddingRight: 'var(--spacing-md)' 
+      }}>
+        <h2 style={{ 
+          fontSize: 'var(--font-size-3xl)', 
+          fontWeight: 'bold', 
+          textAlign: 'center', 
+          marginBottom: 'var(--spacing-md)',
+          color: 'var(--color-text-primary)' 
+        }}>
           My Projects
         </h2>
-        <p className="text-center mb-12 max-w-2xl mx-auto" style={{ color: 'var(--color-text-secondary)' }}>
+        <p style={{ 
+          textAlign: 'center', 
+          marginBottom: 'var(--spacing-xl)', 
+          maxWidth: '42rem', 
+          marginLeft: 'auto', 
+          marginRight: 'auto',
+          color: 'var(--color-text-secondary)' 
+        }}>
           Here are some of the projects I've worked on. Each one represents a unique challenge and learning experience.
         </p>
 
         {showFilters && (
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div style={{ 
+            display: 'flex', 
+            flexWrap: 'wrap', 
+            justifyContent: 'center', 
+            gap: 'var(--spacing-md)', 
+            marginBottom: 'var(--spacing-xl)' 
+          }}>
             {categories.map(category => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={cn(
-                  "px-4 py-2 rounded-lg transition-colors duration-300",
-                  selectedCategory === category.id
-                    ? "text-white"
-                    : "hover:bg-gray-100"
-                )}
                 style={{
+                  paddingLeft: 'var(--spacing-md)',
+                  paddingRight: 'var(--spacing-md)',
+                  paddingTop: 'var(--spacing-sm)',
+                  paddingBottom: 'var(--spacing-sm)',
+                  borderRadius: 'var(--radius-lg)',
+                  transition: 'all 0.3s ease',
                   backgroundColor: selectedCategory === category.id ? 'var(--color-primary)' : 'transparent',
                   color: selectedCategory === category.id ? 'white' : 'var(--color-text-primary)',
-                  border: selectedCategory === category.id ? 'none' : '1px solid var(--color-border)'
+                  border: selectedCategory === category.id ? 'none' : '1px solid var(--color-border)',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  if (selectedCategory !== category.id) {
+                    e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (selectedCategory !== category.id) {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }
                 }}
               >
                 {category.name}
@@ -142,16 +183,27 @@ export function ProjectCards({
             
             <button
               onClick={() => setShowFeatured(!showFeatured)}
-              className={cn(
-                "px-4 py-2 rounded-lg transition-colors duration-300",
-                showFeatured
-                  ? "text-white"
-                  : "hover:bg-gray-100"
-              )}
               style={{
+                paddingLeft: 'var(--spacing-md)',
+                paddingRight: 'var(--spacing-md)',
+                paddingTop: 'var(--spacing-sm)',
+                paddingBottom: 'var(--spacing-sm)',
+                borderRadius: 'var(--radius-lg)',
+                transition: 'all 0.3s ease',
                 backgroundColor: showFeatured ? 'var(--color-primary)' : 'transparent',
                 color: showFeatured ? 'white' : 'var(--color-text-primary)',
-                border: showFeatured ? 'none' : '1px solid var(--color-border)'
+                border: showFeatured ? 'none' : '1px solid var(--color-border)',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                if (!showFeatured) {
+                  e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!showFeatured) {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }
               }}
             >
               Featured Only
@@ -159,54 +211,133 @@ export function ProjectCards({
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', 
+          gap: 'var(--spacing-lg)',
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
           {filteredProjects.map(project => (
             <article 
               key={project.id}
-              className="group bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-              style={{ backgroundColor: 'var(--color-bg)' }}
+              style={{ 
+                backgroundColor: 'var(--color-bg)',
+                borderRadius: 'var(--radius-lg)',
+                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                overflow: 'hidden',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
             >
               {/* Project Image Placeholder */}
-              <div className="relative h-48 bg-gradient-to-br from-primary to-secondary overflow-hidden">
+              <div style={{ 
+                position: 'relative',
+                height: '12rem',
+                background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
+                overflow: 'hidden'
+              }}>
                 {project.image ? (
                   <img 
                     src={project.image} 
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    style={{ 
+                      width: '100%', 
+                      height: '100%', 
+                      objectFit: 'cover',
+                      transition: 'transform 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="text-white text-4xl font-bold opacity-20">
+                  <div style={{ 
+                    width: '100%', 
+                    height: '100%', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center' 
+                  }}>
+                    <div style={{ 
+                      color: 'white', 
+                      fontSize: '2.25rem', 
+                      fontWeight: 'bold', 
+                      opacity: 0.2 
+                    }}>
                       {project.title.charAt(0)}
                     </div>
                   </div>
                 )}
                 
                 {project.featured && (
-                  <div className="absolute top-4 right-4">
-                    <span className="px-2 py-1 text-xs bg-yellow-400 text-yellow-900 rounded-full font-semibold">
+                  <div style={{ 
+                    position: 'absolute', 
+                    top: 'var(--spacing-md)', 
+                    right: 'var(--spacing-md)' 
+                  }}>
+                    <span style={{ 
+                      paddingLeft: 'var(--spacing-sm)',
+                      paddingRight: 'var(--spacing-sm)',
+                      paddingTop: 'var(--spacing-xs)',
+                      paddingBottom: 'var(--spacing-xs)',
+                      fontSize: 'var(--font-size-xs)',
+                      backgroundColor: '#fbbf24',
+                      color: '#92400e',
+                      borderRadius: '9999px',
+                      fontWeight: '600'
+                    }}>
                       Featured
                     </span>
                   </div>
                 )}
               </div>
 
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--color-text-primary)' }}>
+              <div style={{ padding: 'var(--spacing-lg)' }}>
+                <h3 style={{ 
+                  fontSize: 'var(--font-size-xl)', 
+                  fontWeight: '600', 
+                  marginBottom: 'var(--spacing-sm)',
+                  color: 'var(--color-text-primary)' 
+                }}>
                   {project.title}
                 </h3>
                 
-                <p className="mb-4 line-clamp-3" style={{ color: 'var(--color-text-secondary)' }}>
+                <p style={{ 
+                  marginBottom: 'var(--spacing-md)',
+                  color: 'var(--color-text-secondary)',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden'
+                }}>
                   {project.description}
                 </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div style={{ 
+                  display: 'flex', 
+                  flexWrap: 'wrap', 
+                  gap: 'var(--spacing-sm)', 
+                  marginBottom: 'var(--spacing-lg)' 
+                }}>
                   {project.technologies.map((tech, index) => (
                     <span 
                       key={index}
-                      className="px-2 py-1 text-xs rounded-full"
                       style={{ 
+                        paddingLeft: 'var(--spacing-sm)',
+                        paddingRight: 'var(--spacing-sm)',
+                        paddingTop: 'var(--spacing-xs)',
+                        paddingBottom: 'var(--spacing-xs)',
+                        fontSize: 'var(--font-size-xs)',
+                        borderRadius: '9999px',
                         backgroundColor: 'var(--color-primary)',
                         color: 'white',
                         opacity: 0.8
@@ -218,17 +349,27 @@ export function ProjectCards({
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-3">
+                <div style={{ display: 'flex', gap: 'var(--spacing-md)' }}>
                   {project.liveUrl && project.liveUrl !== '#' && (
                     <a 
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 text-center px-4 py-2 rounded-lg transition-colors duration-300"
                       style={{ 
+                        flex: 1,
+                        textAlign: 'center',
+                        paddingLeft: 'var(--spacing-md)',
+                        paddingRight: 'var(--spacing-md)',
+                        paddingTop: 'var(--spacing-sm)',
+                        paddingBottom: 'var(--spacing-sm)',
+                        borderRadius: 'var(--radius-lg)',
+                        transition: 'all 0.3s ease',
                         backgroundColor: 'var(--color-primary)',
-                        color: 'white'
+                        color: 'white',
+                        textDecoration: 'none'
                       }}
+                      onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
+                      onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
                     >
                       Live Demo
                     </a>
@@ -239,22 +380,40 @@ export function ProjectCards({
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 text-center px-4 py-2 border rounded-lg transition-colors duration-300 hover:bg-gray-50"
                       style={{ 
-                        borderColor: 'var(--color-border)',
-                        color: 'var(--color-text-primary)'
+                        flex: 1,
+                        textAlign: 'center',
+                        paddingLeft: 'var(--spacing-md)',
+                        paddingRight: 'var(--spacing-md)',
+                        paddingTop: 'var(--spacing-sm)',
+                        paddingBottom: 'var(--spacing-sm)',
+                        border: '1px solid var(--color-border)',
+                        borderRadius: 'var(--radius-lg)',
+                        transition: 'all 0.3s ease',
+                        color: 'var(--color-text-primary)',
+                        textDecoration: 'none'
                       }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--color-secondary)'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                     >
                       GitHub
                     </a>
                   )}
                   
                   {(project.liveUrl === '#' || project.githubUrl === '#') && (
-                    <div className="flex-1 text-center px-4 py-2 rounded-lg opacity-50 cursor-not-allowed"
-                         style={{ 
-                           backgroundColor: 'var(--color-muted)',
-                           color: 'var(--color-text-secondary)'
-                         }}>
+                    <div style={{ 
+                      flex: 1,
+                      textAlign: 'center',
+                      paddingLeft: 'var(--spacing-md)',
+                      paddingRight: 'var(--spacing-md)',
+                      paddingTop: 'var(--spacing-sm)',
+                      paddingBottom: 'var(--spacing-sm)',
+                      borderRadius: 'var(--radius-lg)',
+                      opacity: 0.5,
+                      cursor: 'not-allowed',
+                      backgroundColor: 'var(--color-muted)',
+                      color: 'var(--color-text-secondary)'
+                    }}>
                       Coming Soon
                     </div>
                   )}
@@ -265,7 +424,7 @@ export function ProjectCards({
         </div>
 
         {filteredProjects.length === 0 && (
-          <div className="text-center py-12">
+          <div style={{ textAlign: 'center', paddingTop: 'var(--spacing-xl)', paddingBottom: 'var(--spacing-xl)' }}>
             <p style={{ color: 'var(--color-text-secondary)' }}>
               No projects found for the selected filters.
             </p>
