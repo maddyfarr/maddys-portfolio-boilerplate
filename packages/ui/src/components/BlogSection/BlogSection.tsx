@@ -74,18 +74,62 @@ export function BlogSection({
 
   if (loading) {
     return (
-      <section className={cn("py-16", className)}>
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12" style={{ color: 'var(--color-text-primary)' }}>
+      <section 
+        className={cn(className)}
+        style={{ 
+          paddingTop: 'var(--spacing-xl)', 
+          paddingBottom: 'var(--spacing-xl)' 
+        }}
+      >
+        <div style={{ 
+          maxWidth: '1200px', 
+          margin: '0 auto', 
+          paddingLeft: 'var(--spacing-md)', 
+          paddingRight: 'var(--spacing-md)' 
+        }}>
+          <h2 style={{ 
+            fontSize: 'var(--font-size-3xl)', 
+            fontWeight: 'bold', 
+            textAlign: 'center', 
+            marginBottom: 'var(--spacing-xl)',
+            color: 'var(--color-text-primary)'
+          }}>
             Latest Blog Posts
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+            gap: 'var(--spacing-lg)',
+            maxWidth: '1200px',
+            margin: '0 auto'
+          }}>
             {[...Array(maxPosts)].map((_, i) => (
-              <div key={i} className="animate-pulse">
-                <div className="bg-gray-200 h-48 rounded-lg mb-4"></div>
-                <div className="h-4 bg-gray-200 rounded mb-2"></div>
-                <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+              <div key={i} style={{ animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}>
+                <div style={{ 
+                  backgroundColor: 'var(--color-secondary)', 
+                  height: '12rem', 
+                  borderRadius: 'var(--radius-lg)', 
+                  marginBottom: 'var(--spacing-md)' 
+                }}></div>
+                <div style={{ 
+                  height: '1rem', 
+                  backgroundColor: 'var(--color-secondary)', 
+                  borderRadius: 'var(--radius-sm)', 
+                  marginBottom: 'var(--spacing-sm)' 
+                }}></div>
+                <div style={{ 
+                  height: '1rem', 
+                  backgroundColor: 'var(--color-secondary)', 
+                  borderRadius: 'var(--radius-sm)', 
+                  width: '75%', 
+                  marginBottom: 'var(--spacing-sm)' 
+                }}></div>
+                <div style={{ 
+                  height: '0.75rem', 
+                  backgroundColor: 'var(--color-secondary)', 
+                  borderRadius: 'var(--radius-sm)', 
+                  width: '50%' 
+                }}></div>
               </div>
             ))}
           </div>
@@ -96,12 +140,29 @@ export function BlogSection({
 
   if (error) {
     return (
-      <section className={cn("py-16", className)}>
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12" style={{ color: 'var(--color-text-primary)' }}>
+      <section 
+        className={cn(className)}
+        style={{ 
+          paddingTop: 'var(--spacing-xl)', 
+          paddingBottom: 'var(--spacing-xl)' 
+        }}
+      >
+        <div style={{ 
+          maxWidth: '1200px', 
+          margin: '0 auto', 
+          paddingLeft: 'var(--spacing-md)', 
+          paddingRight: 'var(--spacing-md)' 
+        }}>
+          <h2 style={{ 
+            fontSize: 'var(--font-size-3xl)', 
+            fontWeight: 'bold', 
+            textAlign: 'center', 
+            marginBottom: 'var(--spacing-xl)',
+            color: 'var(--color-text-primary)'
+          }}>
             Latest Blog Posts
           </h2>
-          <div className="text-center py-8">
+          <div style={{ textAlign: 'center', paddingTop: 'var(--spacing-lg)', paddingBottom: 'var(--spacing-lg)' }}>
             <p style={{ color: 'var(--color-text-secondary)' }}>
               Unable to load blog posts at the moment. Check out my Medium profile directly!
             </p>
@@ -109,8 +170,21 @@ export function BlogSection({
               href={`https://medium.com/@${mediumUsername}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-4 px-6 py-3 bg-primary text-white rounded-lg hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: 'var(--color-primary)' }}
+              style={{ 
+                display: 'inline-block',
+                marginTop: 'var(--spacing-md)',
+                paddingLeft: 'var(--spacing-lg)',
+                paddingRight: 'var(--spacing-lg)',
+                paddingTop: 'var(--spacing-md)',
+                paddingBottom: 'var(--spacing-md)',
+                backgroundColor: 'var(--color-primary)',
+                color: 'white',
+                borderRadius: 'var(--radius-lg)',
+                textDecoration: 'none',
+                transition: 'opacity 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
+              onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
             >
               View on Medium
             </a>
@@ -121,14 +195,31 @@ export function BlogSection({
   }
 
   return (
-    <section className={cn("py-16", className)}>
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12" style={{ color: 'var(--color-text-primary)' }}>
+    <section 
+      className={cn(className)}
+      style={{ 
+        paddingTop: 'var(--spacing-xl)', 
+        paddingBottom: 'var(--spacing-xl)' 
+      }}
+    >
+      <div style={{ 
+        maxWidth: '1200px', 
+        margin: '0 auto', 
+        paddingLeft: 'var(--spacing-md)', 
+        paddingRight: 'var(--spacing-md)' 
+      }}>
+        <h2 style={{ 
+          fontSize: 'var(--font-size-3xl)', 
+          fontWeight: 'bold', 
+          textAlign: 'center', 
+          marginBottom: 'var(--spacing-xl)',
+          color: 'var(--color-text-primary)'
+        }}>
           Latest Blog Posts
         </h2>
         
         {posts.length === 0 ? (
-          <div className="text-center py-8">
+          <div style={{ textAlign: 'center', paddingTop: 'var(--spacing-lg)', paddingBottom: 'var(--spacing-lg)' }}>
             <p style={{ color: 'var(--color-text-secondary)' }}>
               No blog posts found. Check out my Medium profile!
             </p>
@@ -136,63 +227,128 @@ export function BlogSection({
               href={`https://medium.com/@${mediumUsername}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-4 px-6 py-3 bg-primary text-white rounded-lg hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: 'var(--color-primary)' }}
+              style={{ 
+                display: 'inline-block',
+                marginTop: 'var(--spacing-md)',
+                paddingLeft: 'var(--spacing-lg)',
+                paddingRight: 'var(--spacing-lg)',
+                paddingTop: 'var(--spacing-md)',
+                paddingBottom: 'var(--spacing-md)',
+                backgroundColor: 'var(--color-primary)',
+                color: 'white',
+                borderRadius: 'var(--radius-lg)',
+                textDecoration: 'none',
+                transition: 'opacity 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
+              onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
             >
               View on Medium
             </a>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+            gap: 'var(--spacing-lg)',
+            maxWidth: '1200px',
+            margin: '0 auto'
+          }}>
             {posts.map((post, index) => (
               <article 
                 key={index}
-                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 max-w-sm mx-auto w-full"
-                style={{ backgroundColor: 'var(--color-bg)' }}
+                style={{ 
+                  backgroundColor: 'var(--color-bg)',
+                  borderRadius: 'var(--radius-lg)',
+                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                  overflow: 'hidden',
+                  maxWidth: '24rem',
+                  margin: '0 auto',
+                  width: '100%',
+                  transition: 'box-shadow 0.3s ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'}
+                onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'}
               >
                 {post.thumbnail && (
                   <img 
                     src={post.thumbnail} 
                     alt={post.title}
-                    className="w-full h-48 object-cover"
+                    style={{ 
+                      width: '100%', 
+                      height: '12rem', 
+                      objectFit: 'cover' 
+                    }}
                   />
                 )}
-                <div className="p-6">
-                  <div className="flex flex-wrap gap-2 mb-3">
+                <div style={{ paddingTop: 'var(--spacing-md)', paddingLeft: 'var(--spacing-md)', paddingRight: 'var(--spacing-md)', paddingBottom: 'var(--spacing-md)' }}>
+                  <div style={{ 
+                    display: 'flex', 
+                    flexWrap: 'wrap', 
+                    gap: 'var(--spacing-sm)', 
+                    marginBottom: 'var(--spacing-md)' 
+                  }}>
                     {post.categories.slice(0, 3).map((category, catIndex) => (
                       <span 
                         key={catIndex}
-                        className="px-2 py-1 text-xs rounded-full"
                         style={{ 
-                          backgroundColor: 'var(--color-primary)',
-                          color: 'white',
+                          paddingLeft: 'var(--spacing-sm)',
+                          paddingRight: 'var(--spacing-sm)',
+                          paddingTop: 'var(--spacing-xs)',
+                          paddingBottom: 'var(--spacing-xs)',
+                          fontSize: 'var(--font-size-xs)',
+                          borderRadius: '9999px',
+                          color: 'var(--color-text-primary)',
                           opacity: 0.8
                         }}
                       >
-                        {category}
+                        {' #'+ category}
                       </span>
                     ))}
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 line-clamp-2" style={{ color: 'var(--color-text-primary)' }}>
+                  <h3 style={{ 
+                    fontSize: 'var(--font-size-xl)', 
+                    fontWeight: '600', 
+                    marginBottom: 'var(--spacing-sm)',
+                    color: 'var(--color-text-primary)',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}>
                     {post.title}
                   </h3>
-                  <p className="text-sm mb-4" style={{ color: 'var(--color-text-secondary)' }}>
+                  <p style={{ 
+                    fontSize: 'var(--font-size-sm)', 
+                    marginBottom: 'var(--spacing-md)',
+                    color: 'var(--color-text-secondary)' 
+                  }}>
                     {post.pubDate}
                   </p>
-                  <p className="mb-4 line-clamp-3" style={{ color: 'var(--color-text-secondary)' }}>
+                  <p style={{ 
+                    marginBottom: 'var(--spacing-md)',
+                    color: 'var(--color-text-secondary)',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}>
                     {post.content}
                   </p>
                   <a 
                     href={post.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-primary hover:underline"
-                    style={{ color: 'var(--color-primary)' }}
+                    style={{ 
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      color: 'var(--color-primary)',
+                      textDecoration: 'none'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
+                    onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
                   >
                     Read More
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
                   </a>
                 </div>
               </article>
@@ -200,21 +356,34 @@ export function BlogSection({
           </div>
         )}
         
-        <div className="text-center mt-12">
+        <div style={{ textAlign: 'center', marginTop: 'var(--spacing-xl)' }}>
           <a 
             href={`https://medium.com/@${mediumUsername}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 border-2 rounded-lg hover:bg-primary hover:text-white transition-colors duration-300"
             style={{ 
-              borderColor: 'var(--color-primary)',
-              color: 'var(--color-primary)'
+              display: 'inline-flex',
+              alignItems: 'center',
+              paddingLeft: 'var(--spacing-lg)',
+              paddingRight: 'var(--spacing-lg)',
+              paddingTop: 'var(--spacing-md)',
+              paddingBottom: 'var(--spacing-md)',
+              border: '2px solid var(--color-primary)',
+              borderRadius: 'var(--radius-lg)',
+              color: 'var(--color-primary)',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+              e.currentTarget.style.color = 'white';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.color = 'var(--color-primary)';
             }}
           >
             View All Posts on Medium
-            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
           </a>
         </div>
       </div>

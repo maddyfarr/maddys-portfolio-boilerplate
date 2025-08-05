@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import { cn } from "../../utils/cn";
+import "../../theme/tokens.css";
 
 interface TimelineProps {
   children: ReactNode;
@@ -9,7 +10,18 @@ interface TimelineProps {
 }
 
 function TimelineComponent({ children, className }: TimelineProps) {
-  return <ol className={cn("relative border-s border-muted", className)}>{children}</ol>;
+  return (
+    <ol 
+      className={cn(className)}
+      style={{ 
+        position: 'relative',
+        borderLeft: '1px solid var(--color-border)',
+        paddingLeft: 'var(--spacing-lg)'
+      }}
+    >
+      {children}
+    </ol>
+  );
 }
 
 interface ItemProps {
@@ -17,7 +29,17 @@ interface ItemProps {
   className?: string;
 }
 function Item({ children, className }: ItemProps) {
-  return <li className={cn("mb-10 ms-6", className)}>{children}</li>;
+  return (
+    <li 
+      className={cn(className)}
+      style={{ 
+        marginBottom: 'var(--spacing-lg)',
+        marginLeft: 'var(--spacing-lg)'
+      }}
+    >
+      {children}
+    </li>
+  );
 }
 
 interface PointProps {
@@ -26,10 +48,19 @@ interface PointProps {
 function Point({ className }: PointProps) {
   return (
     <span
-      className={cn(
-        "absolute flex items-center justify-center w-3.5 h-3.5 bg-primary rounded-full -start-1.75 ring-4 ring-background",
-        className
-      )}
+      className={cn(className)}
+      style={{
+        position: 'absolute',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '0.875rem',
+        height: '0.875rem',
+        backgroundColor: 'var(--color-primary)',
+        borderRadius: '50%',
+        left: '-1.75rem',
+        boxShadow: '0 0 0 4px var(--color-bg)'
+      }}
     />
   );
 }
@@ -39,7 +70,18 @@ interface ContentProps {
   className?: string;
 }
 function Content({ children, className }: ContentProps) {
-  return <div className={cn("flex flex-col gap-1", className)}>{children}</div>;
+  return (
+    <div 
+      className={cn(className)}
+      style={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        gap: 'var(--spacing-xs)' 
+      }}
+    >
+      {children}
+    </div>
+  );
 }
 
 interface TimeProps {
@@ -47,7 +89,18 @@ interface TimeProps {
   className?: string;
 }
 function Time({ children, className }: TimeProps) {
-  return <time className={cn("text-sm font-normal text-muted-foreground", className)}>{children}</time>;
+  return (
+    <time 
+      className={cn(className)}
+      style={{ 
+        fontSize: 'var(--font-size-sm)', 
+        fontWeight: 'normal', 
+        color: 'var(--color-text-secondary)' 
+      }}
+    >
+      {children}
+    </time>
+  );
 }
 
 interface TitleProps {
@@ -55,7 +108,18 @@ interface TitleProps {
   className?: string;
 }
 function Title({ children, className }: TitleProps) {
-  return <h3 className={cn("text-lg font-semibold text-foreground", className)}>{children}</h3>;
+  return (
+    <h3 
+      className={cn(className)}
+      style={{ 
+        fontSize: 'var(--font-size-lg)', 
+        fontWeight: '600', 
+        color: 'var(--color-text-primary)' 
+      }}
+    >
+      {children}
+    </h3>
+  );
 }
 
 interface DescriptionProps {
@@ -63,7 +127,18 @@ interface DescriptionProps {
   className?: string;
 }
 function Description({ children, className }: DescriptionProps) {
-  return <p className={cn("text-base font-normal text-muted-foreground", className)}>{children}</p>;
+  return (
+    <p 
+      className={cn(className)}
+      style={{ 
+        fontSize: 'var(--font-size-base)', 
+        fontWeight: 'normal', 
+        color: 'var(--color-text-secondary)' 
+      }}
+    >
+      {children}
+    </p>
+  );
 }
 
 // 🔐 Correctly typed compound component export

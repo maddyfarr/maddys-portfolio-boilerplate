@@ -82,27 +82,65 @@ export function SkillsGrid({
   };
 
   return (
-    <section className={cn("py-16", className)}>
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-4" style={{ color: 'var(--color-text-primary)' }}>
+    <section 
+      className={cn(className)}
+      style={{ 
+        paddingTop: 'var(--spacing-xl)', 
+        paddingBottom: 'var(--spacing-xl)' 
+      }}
+    >
+      <div style={{ 
+        maxWidth: '1200px', 
+        margin: '0 auto', 
+        paddingLeft: 'var(--spacing-md)', 
+        paddingRight: 'var(--spacing-md)' 
+      }}>
+        <h2 style={{ 
+          fontSize: 'var(--font-size-3xl)', 
+          fontWeight: 'bold', 
+          textAlign: 'center', 
+          marginBottom: 'var(--spacing-md)',
+          color: 'var(--color-text-primary)' 
+        }}>
           Skills & Technologies
         </h2>
-        <p className="text-center mb-12 max-w-2xl mx-auto" style={{ color: 'var(--color-text-secondary)' }}>
+        <p style={{ 
+          textAlign: 'center', 
+          marginBottom: 'var(--spacing-xl)', 
+          maxWidth: '42rem', 
+          marginLeft: 'auto', 
+          marginRight: 'auto',
+          color: 'var(--color-text-secondary)' 
+        }}>
           Here's what I work with. I'm always learning new technologies and improving my existing skills.
         </p>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div style={{ 
+          display: 'flex', 
+          flexWrap: 'wrap', 
+          justifyContent: 'center', 
+          gap: 'var(--spacing-md)', 
+          marginBottom: 'var(--spacing-xl)' 
+        }}>
           {categories.map(category => (
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
-              className="px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105"
               style={{
+                paddingLeft: 'var(--spacing-md)',
+                paddingRight: 'var(--spacing-md)',
+                paddingTop: 'var(--spacing-sm)',
+                paddingBottom: 'var(--spacing-sm)',
+                borderRadius: 'var(--radius-lg)',
+                transition: 'all 0.3s ease',
                 backgroundColor: selectedCategory === category.id ? category.color : 'transparent',
                 color: selectedCategory === category.id ? 'white' : 'var(--color-text-primary)',
-                border: selectedCategory === category.id ? 'none' : '1px solid var(--color-border)'
+                border: selectedCategory === category.id ? 'none' : '1px solid var(--color-border)',
+                cursor: 'pointer'
               }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
             >
               {category.name}
             </button>
@@ -110,40 +148,90 @@ export function SkillsGrid({
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+          gap: 'var(--spacing-lg)',
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
           {filteredSkills.map(skill => (
             <div
               key={skill.name}
-              className="group relative bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
-              style={{ backgroundColor: 'var(--color-bg)' }}
-              onMouseEnter={() => setHoveredSkill(skill.name)}
-              onMouseLeave={() => setHoveredSkill(null)}
+              style={{ 
+                position: 'relative',
+                backgroundColor: 'var(--color-bg)',
+                borderRadius: 'var(--radius-lg)',
+                padding: 'var(--spacing-lg)',
+                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                setHoveredSkill(skill.name);
+                e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+              }}
+              onMouseLeave={(e) => {
+                setHoveredSkill(null);
+                e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
             >
               {/* Skill Icon */}
-              <div className="text-4xl mb-4 text-center">
+              <div style={{ 
+                fontSize: '2.25rem', 
+                marginBottom: 'var(--spacing-md)', 
+                textAlign: 'center' 
+              }}>
                 {skill.icon || '💻'}
               </div>
 
               {/* Skill Name */}
-              <h3 className="text-lg font-semibold text-center mb-3" style={{ color: 'var(--color-text-primary)' }}>
+              <h3 style={{ 
+                fontSize: 'var(--font-size-lg)', 
+                fontWeight: '600', 
+                textAlign: 'center', 
+                marginBottom: 'var(--spacing-md)',
+                color: 'var(--color-text-primary)' 
+              }}>
                 {skill.name}
               </h3>
 
               {/* Proficiency Bar */}
               {showProficiency && (
-                <div className="mb-3">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-medium" style={{ color: 'var(--color-text-secondary)' }}>
+                <div style={{ marginBottom: 'var(--spacing-md)' }}>
+                  <div style={{ 
+                    display: 'flex', 
+                    justifyContent: 'space-between', 
+                    alignItems: 'center', 
+                    marginBottom: 'var(--spacing-sm)' 
+                  }}>
+                    <span style={{ 
+                      fontSize: 'var(--font-size-sm)', 
+                      fontWeight: '500',
+                      color: 'var(--color-text-secondary)' 
+                    }}>
                       {getProficiencyLabel(skill.proficiency)}
                     </span>
-                    <span className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                    <span style={{ 
+                      fontSize: 'var(--font-size-sm)',
+                      color: 'var(--color-text-secondary)' 
+                    }}>
                       {skill.proficiency}%
                     </span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div style={{ 
+                    width: '100%', 
+                    backgroundColor: 'var(--color-secondary)', 
+                    borderRadius: '9999px', 
+                    height: '0.5rem' 
+                  }}>
                     <div 
-                      className="h-2 rounded-full transition-all duration-500"
                       style={{ 
+                        height: '0.5rem', 
+                        borderRadius: '9999px', 
+                        transition: 'all 0.5s ease',
                         width: `${skill.proficiency}%`,
                         backgroundColor: getProficiencyColor(skill.proficiency)
                       }}
@@ -153,10 +241,17 @@ export function SkillsGrid({
               )}
 
               {/* Category Badge */}
-              <div className="text-center">
+              <div style={{ textAlign: 'center' }}>
                 <span 
-                  className="px-2 py-1 text-xs rounded-full text-white font-medium"
                   style={{ 
+                    paddingLeft: 'var(--spacing-sm)',
+                    paddingRight: 'var(--spacing-sm)',
+                    paddingTop: 'var(--spacing-xs)',
+                    paddingBottom: 'var(--spacing-xs)',
+                    fontSize: 'var(--font-size-xs)',
+                    borderRadius: '9999px',
+                    color: 'white',
+                    fontWeight: '500',
                     backgroundColor: categories.find(c => c.id === skill.category)?.color || 'var(--color-primary)'
                   }}
                 >
@@ -166,16 +261,37 @@ export function SkillsGrid({
 
               {/* Hover Description */}
               {hoveredSkill === skill.name && skill.description && (
-                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 p-3 rounded-lg shadow-lg max-w-xs z-10"
-                     style={{ 
-                       backgroundColor: 'var(--color-bg)',
-                       border: '1px solid var(--color-border)'
-                     }}>
-                  <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                <div style={{ 
+                  position: 'absolute',
+                  bottom: '100%',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  marginBottom: 'var(--spacing-sm)',
+                  padding: 'var(--spacing-md)',
+                  borderRadius: 'var(--radius-lg)',
+                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                  maxWidth: '18rem',
+                  zIndex: 10,
+                  backgroundColor: 'var(--color-bg)',
+                  border: '1px solid var(--color-border)'
+                }}>
+                  <p style={{ 
+                    fontSize: 'var(--font-size-sm)',
+                    color: 'var(--color-text-secondary)' 
+                  }}>
                     {skill.description}
                   </p>
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent"
-                       style={{ borderTopColor: 'var(--color-bg)' }} />
+                  <div style={{ 
+                    position: 'absolute',
+                    top: '100%',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: 0,
+                    height: 0,
+                    borderLeft: '0.5rem solid transparent',
+                    borderRight: '0.5rem solid transparent',
+                    borderTop: '0.5rem solid var(--color-bg)'
+                  }} />
                 </div>
               )}
             </div>
@@ -184,11 +300,21 @@ export function SkillsGrid({
 
         {/* Legend */}
         {showProficiency && (
-          <div className="mt-12 text-center">
-            <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--color-text-primary)' }}>
+          <div style={{ marginTop: 'var(--spacing-xl)', textAlign: 'center' }}>
+            <h3 style={{ 
+              fontSize: 'var(--font-size-lg)', 
+              fontWeight: '600', 
+              marginBottom: 'var(--spacing-md)',
+              color: 'var(--color-text-primary)' 
+            }}>
               Proficiency Levels
             </h3>
-            <div className="flex flex-wrap justify-center gap-6">
+            <div style={{ 
+              display: 'flex', 
+              flexWrap: 'wrap', 
+              justifyContent: 'center', 
+              gap: 'var(--spacing-lg)' 
+            }}>
               {[
                 { label: 'Expert (90-100%)', color: '#10B981' },
                 { label: 'Advanced (80-89%)', color: '#10B981' },
@@ -196,12 +322,23 @@ export function SkillsGrid({
                 { label: 'Beginner (40-59%)', color: '#F97316' },
                 { label: 'Learning (0-39%)', color: '#EF4444' }
               ].map((level, index) => (
-                <div key={index} className="flex items-center gap-2">
+                <div key={index} style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: 'var(--spacing-sm)' 
+                }}>
                   <div 
-                    className="w-3 h-3 rounded-full"
-                    style={{ backgroundColor: level.color }}
+                    style={{ 
+                      width: '0.75rem', 
+                      height: '0.75rem', 
+                      borderRadius: '50%',
+                      backgroundColor: level.color 
+                    }}
                   />
-                  <span className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                  <span style={{ 
+                    fontSize: 'var(--font-size-sm)',
+                    color: 'var(--color-text-secondary)' 
+                  }}>
                     {level.label}
                   </span>
                 </div>
@@ -211,7 +348,7 @@ export function SkillsGrid({
         )}
 
         {filteredSkills.length === 0 && (
-          <div className="text-center py-12">
+          <div style={{ textAlign: 'center', paddingTop: 'var(--spacing-xl)', paddingBottom: 'var(--spacing-xl)' }}>
             <p style={{ color: 'var(--color-text-secondary)' }}>
               No skills found for the selected category.
             </p>
