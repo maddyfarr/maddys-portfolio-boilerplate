@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { cn } from '../../utils/cn';
+import { useLanguage } from '../../context/LanguageContext';
 import '../../theme/tokens.css';
 
 interface BlogPost {
@@ -24,6 +25,7 @@ export function BlogSection({
   className, 
   maxPosts = 3 
 }: BlogSectionProps) {
+  const { t } = useLanguage();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -94,7 +96,7 @@ export function BlogSection({
             marginBottom: 'var(--spacing-xl)',
             color: 'var(--color-text-primary)'
           }}>
-            Latest Blog Posts
+            {t('blog.title')}
           </h2>
           <div style={{ 
             display: 'grid', 
@@ -160,11 +162,11 @@ export function BlogSection({
             marginBottom: 'var(--spacing-xl)',
             color: 'var(--color-text-primary)'
           }}>
-            Latest Blog Posts
+            {t('blog.title')}
           </h2>
           <div style={{ textAlign: 'center', paddingTop: 'var(--spacing-lg)', paddingBottom: 'var(--spacing-lg)' }}>
             <p style={{ color: 'var(--color-text-secondary)' }}>
-              Unable to load blog posts at the moment. Check out my Medium profile directly!
+              {t('blog.unableToLoad')}
             </p>
             <a 
               href={`https://medium.com/@${mediumUsername}`}
@@ -215,13 +217,13 @@ export function BlogSection({
           marginBottom: 'var(--spacing-xl)',
           color: 'var(--color-text-primary)'
         }}>
-          Latest Blog Posts
+          {t('blog.title')}
         </h2>
         
         {posts.length === 0 ? (
           <div style={{ textAlign: 'center', paddingTop: 'var(--spacing-lg)', paddingBottom: 'var(--spacing-lg)' }}>
             <p style={{ color: 'var(--color-text-secondary)' }}>
-              No blog posts found. Check out my Medium profile!
+              {t('blog.noPosts')}
             </p>
             <a 
               href={`https://medium.com/@${mediumUsername}`}
@@ -258,7 +260,7 @@ export function BlogSection({
               <article 
                 key={index}
                 style={{ 
-                  backgroundColor: 'var(--color-bg)',
+                  backgroundColor: 'var(--color-card-bg)',
                   borderRadius: 'var(--radius-lg)',
                   boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
                   overflow: 'hidden',
@@ -348,7 +350,7 @@ export function BlogSection({
                     onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
                     onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
                   >
-                    Read More
+                    {t('blog.readMore')}
                   </a>
                 </div>
               </article>
@@ -383,7 +385,7 @@ export function BlogSection({
               e.currentTarget.style.color = 'var(--color-primary)';
             }}
           >
-            View All Posts on Medium
+            {t('blog.viewAllPosts')}
           </a>
         </div>
       </div>

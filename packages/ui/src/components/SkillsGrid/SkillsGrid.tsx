@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { cn } from '../../utils/cn';
+import { useLanguage } from '../../context/LanguageContext';
 import '../../theme/tokens.css';
 
 interface Skill {
@@ -16,6 +17,7 @@ interface SkillsGridProps {
   skills?: Skill[];
   className?: string;
   showProficiency?: boolean;
+  sectionBackground?: 'beige' | 'white';
 }
 
 const defaultSkills: Skill[] = [
@@ -23,43 +25,37 @@ const defaultSkills: Skill[] = [
   { name: 'React', icon: '⚛️', proficiency: 90, category: 'Frontend', description: 'Building interactive UIs with hooks and modern patterns' },
   { name: 'TypeScript', icon: '📘', proficiency: 85, category: 'Frontend', description: 'Type-safe JavaScript development' },
   { name: 'Next.js', icon: '⚡', proficiency: 80, category: 'Frontend', description: 'Full-stack React framework' },
-  { name: 'Tailwind CSS', icon: '🎨', proficiency: 85, category: 'Frontend', description: 'Utility-first CSS framework' },
-  { name: 'HTML/CSS', icon: '🌐', proficiency: 95, category: 'Frontend', description: 'Semantic markup and responsive design' },
   
   // Backend
-  { name: 'Node.js', icon: '🟢', proficiency: 75, category: 'Backend', description: 'Server-side JavaScript runtime' },
-  { name: 'Express', icon: '🚂', proficiency: 70, category: 'Backend', description: 'Web application framework' },
   { name: 'Python', icon: '🐍', proficiency: 65, category: 'Backend', description: 'General-purpose programming' },
-  { name: 'PostgreSQL', icon: '🐘', proficiency: 60, category: 'Backend', description: 'Relational database management' },
-  { name: 'MongoDB', icon: '🍃', proficiency: 55, category: 'Backend', description: 'NoSQL database' },
   
   // Tools & Others
   { name: 'Git', icon: '📚', proficiency: 85, category: 'Tools', description: 'Version control and collaboration' },
-  { name: 'Docker', icon: '🐳', proficiency: 60, category: 'Tools', description: 'Containerization and deployment' },
-  { name: 'AWS', icon: '☁️', proficiency: 50, category: 'Tools', description: 'Cloud infrastructure and services' },
   { name: 'Figma', icon: '🎯', proficiency: 70, category: 'Tools', description: 'Design and prototyping' },
   { name: 'Storybook', icon: '📖', proficiency: 75, category: 'Tools', description: 'Component development and documentation' },
   
-  // Learning
-  { name: 'Rust', icon: '🦀', proficiency: 30, category: 'Learning', description: 'Systems programming language' },
-  { name: 'Go', icon: '🐹', proficiency: 25, category: 'Learning', description: 'Concurrent programming' },
-  { name: 'Kubernetes', icon: '☸️', proficiency: 20, category: 'Learning', description: 'Container orchestration' }
 ];
 
 export function SkillsGrid({ 
   skills = defaultSkills, 
   className, 
-  showProficiency = true 
+  showProficiency = true,
+  sectionBackground = 'beige'
 }: SkillsGridProps) {
+  const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
+  const getCardBackground = () => {
+    return sectionBackground === 'white' ? '#f7f6f3' : '#ffffff';
+  };
+
   const categories = [
-    { id: 'all', name: 'All Skills', color: 'var(--color-primary)' },
-    { id: 'Frontend', name: 'Frontend', color: '#3B82F6' },
-    { id: 'Backend', name: 'Backend', color: '#10B981' },
-    { id: 'Tools', name: 'Tools', color: '#F59E0B' },
-    { id: 'Learning', name: 'Learning', color: '#8B5CF6' }
+    { id: 'all', name: t('skills.allSkills'), color: 'var(--color-primary)' },
+    { id: 'Frontend', name: t('skills.frontend'), color: '#3B82F6' },
+    { id: 'Backend', name: t('skills.backend'), color: '#10B981' },
+    { id: 'Tools', name: t('skills.tools'), color: '#F59E0B' },
+    { id: 'Learning', name: t('skills.learning'), color: '#8B5CF6' }
   ];
 
   const filteredSkills = selectedCategory === 'all' 
@@ -90,7 +86,7 @@ export function SkillsGrid({
       }}
     >
       <div style={{ 
-        maxWidth: '1200px', 
+        maxWidth: '800px', 
         margin: '0 auto', 
         paddingLeft: 'var(--spacing-md)', 
         paddingRight: 'var(--spacing-md)' 
@@ -102,7 +98,7 @@ export function SkillsGrid({
           marginBottom: 'var(--spacing-md)',
           color: 'var(--color-text-primary)' 
         }}>
-          Skills & Technologies
+          {t('skills.title')}
         </h2>
         <p style={{ 
           textAlign: 'center', 
@@ -112,7 +108,7 @@ export function SkillsGrid({
           marginRight: 'auto',
           color: 'var(--color-text-secondary)' 
         }}>
-          Here's what I work with. I'm always learning new technologies and improving my existing skills.
+          {t('skills.description')}
         </p>
 
         {/* Category Filters */}
@@ -150,9 +146,9 @@ export function SkillsGrid({
         {/* Skills Grid */}
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', 
           gap: 'var(--spacing-lg)',
-          maxWidth: '1200px',
+          maxWidth: '800px',
           margin: '0 auto'
         }}>
           {filteredSkills.map(skill => (
@@ -160,9 +156,9 @@ export function SkillsGrid({
               key={skill.name}
               style={{ 
                 position: 'relative',
-                backgroundColor: 'var(--color-bg)',
+                backgroundColor: getCardBackground(),
                 borderRadius: 'var(--radius-lg)',
-                padding: 'var(--spacing-lg)',
+                padding: 'var(--spacing-md)',
                 boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
                 transition: 'all 0.3s ease',
                 cursor: 'pointer'
@@ -180,8 +176,8 @@ export function SkillsGrid({
             >
               {/* Skill Icon */}
               <div style={{ 
-                fontSize: '2.25rem', 
-                marginBottom: 'var(--spacing-md)', 
+                fontSize: '1.75rem', 
+                marginBottom: 'var(--spacing-sm)', 
                 textAlign: 'center' 
               }}>
                 {skill.icon || '💻'}
@@ -189,10 +185,10 @@ export function SkillsGrid({
 
               {/* Skill Name */}
               <h3 style={{ 
-                fontSize: 'var(--font-size-lg)', 
+                fontSize: 'var(--font-size-base)', 
                 fontWeight: '600', 
                 textAlign: 'center', 
-                marginBottom: 'var(--spacing-md)',
+                marginBottom: 'var(--spacing-sm)',
                 color: 'var(--color-text-primary)' 
               }}>
                 {skill.name}
@@ -200,7 +196,7 @@ export function SkillsGrid({
 
               {/* Proficiency Bar */}
               {showProficiency && (
-                <div style={{ marginBottom: 'var(--spacing-md)' }}>
+                <div style={{ marginBottom: 'var(--spacing-sm)' }}>
                   <div style={{ 
                     display: 'flex', 
                     justifyContent: 'space-between', 
@@ -272,7 +268,7 @@ export function SkillsGrid({
                   boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
                   maxWidth: '18rem',
                   zIndex: 10,
-                  backgroundColor: 'var(--color-bg)',
+                  backgroundColor: getCardBackground(),
                   border: '1px solid var(--color-border)'
                 }}>
                   <p style={{ 
@@ -290,7 +286,7 @@ export function SkillsGrid({
                     height: 0,
                     borderLeft: '0.5rem solid transparent',
                     borderRight: '0.5rem solid transparent',
-                    borderTop: '0.5rem solid var(--color-bg)'
+                    borderTop: `0.5rem solid ${getCardBackground()}`
                   }} />
                 </div>
               )}
@@ -307,7 +303,7 @@ export function SkillsGrid({
               marginBottom: 'var(--spacing-md)',
               color: 'var(--color-text-primary)' 
             }}>
-              Proficiency Levels
+              {t('skills.proficiencyLevels')}
             </h3>
             <div style={{ 
               display: 'flex', 
@@ -316,11 +312,11 @@ export function SkillsGrid({
               gap: 'var(--spacing-lg)' 
             }}>
               {[
-                { label: 'Expert (90-100%)', color: '#10B981' },
-                { label: 'Advanced (80-89%)', color: '#10B981' },
-                { label: 'Intermediate (60-79%)', color: '#F59E0B' },
-                { label: 'Beginner (40-59%)', color: '#F97316' },
-                { label: 'Learning (0-39%)', color: '#EF4444' }
+                { label: t('skills.expert'), color: '#10B981' },
+                { label: t('skills.advanced'), color: '#10B981' },
+                { label: t('skills.intermediate'), color: '#F59E0B' },
+                { label: t('skills.beginner'), color: '#F97316' },
+                { label: t('skills.learningLevel'), color: '#EF4444' }
               ].map((level, index) => (
                 <div key={index} style={{ 
                   display: 'flex', 
@@ -350,7 +346,7 @@ export function SkillsGrid({
         {filteredSkills.length === 0 && (
           <div style={{ textAlign: 'center', paddingTop: 'var(--spacing-xl)', paddingBottom: 'var(--spacing-xl)' }}>
             <p style={{ color: 'var(--color-text-secondary)' }}>
-              No skills found for the selected category.
+              {t('skills.noSkillsFound')}
             </p>
           </div>
         )}

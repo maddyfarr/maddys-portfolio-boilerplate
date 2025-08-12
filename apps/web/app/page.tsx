@@ -10,7 +10,8 @@ import {
   SocialLinks,
   BlogSection,
   CurrentlyWorkingOn,
-  GitHubActivityBubbles,
+  LanguageProgress,
+  GitHubCommitBubble,
   LanguageProvider,
   useLanguage
 } from '@repo/ui';
@@ -40,19 +41,10 @@ function HomeContent() {
     <div className={styles.page}>
       <Navigation />
 
-      {/* GitHub Activity Bubbles - Top Right Corner */}
-      <div style={{ 
-        position: 'fixed', 
-        top: '20px', 
-        right: '20px', 
-        zIndex: 1000,
-        pointerEvents: 'none'
-      }}>
-        <GitHubActivityBubbles 
-          githubUsername="maddyfarr"
-          maxBubbles={3}
-        />
-      </div>
+      {/* GitHub Commit Bubble - Center of Page */}
+      <GitHubCommitBubble 
+        githubUsername="maddyfarr"
+      />
 
       {/* Hero Section */}
       <section id="home" className={styles.hero}>
@@ -122,7 +114,37 @@ function HomeContent() {
       {/* Skills Section */}
       <section id="skills" className={styles.section}>
         <div className={styles.sectionContent}>
-          <SkillsGrid className="w-full" />
+          <SkillsGrid className="w-full" sectionBackground="white" />
+        </div>
+      </section>
+
+      {/* Languages Section */}
+      <section id="languages" className={styles.section}>
+        <div className={styles.sectionContent}>
+          <LanguageProgress 
+            className="w-full"
+            sectionBackground="beige"
+            languages={[
+              {
+                name: 'English',
+                code: 'en',
+                flag: '🇬🇧',
+                level: 'Native',
+                description: 'Mother tongue - Fluent in speaking, reading, and writing',
+                isNative: true
+              },
+              {
+                name: 'German',
+                code: 'de',
+                flag: '🇩🇪',
+                level: 'A1',
+                subLevel: 2, // A1.2
+                hoursStudied: 45,
+                targetHours: 1000, // Approximate hours to reach C2
+                description: 'Learning German for travel and cultural exchange'
+              }
+            ]}
+          />
         </div>
       </section>
 

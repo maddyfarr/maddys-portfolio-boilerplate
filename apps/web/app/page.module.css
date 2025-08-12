@@ -41,8 +41,10 @@
 }
 
 .section:nth-child(even) {
-  background: var(--color-secondary);
+  background: #ffffff;
 }
+
+
 
 .sectionContent {
   display: flex;

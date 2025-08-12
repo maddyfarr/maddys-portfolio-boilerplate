@@ -11,6 +11,8 @@ export * from './components/ContactForm';
 export * from './components/SocialLinks';
 export * from './components/LanguageSwitcher';
 export * from './components/CurrentlyWorkingOn';
+export * from './components/LanguageProgress';
+export * from './components/GitHubCommitBubble';
 export * from './components/GitHubActivityBubbles';
 export * from './theme';
 export * from './components/Card';

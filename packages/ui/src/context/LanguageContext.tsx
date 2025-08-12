@@ -19,6 +19,7 @@ const translations = {
     'nav.home': 'Home',
     'nav.about': 'About',
     'nav.skills': 'Skills',
+    'nav.languages': 'Languages',
     'nav.experience': 'Experience',
     'nav.projects': 'Projects',
     'nav.blog': 'Blog',
@@ -77,6 +78,8 @@ const translations = {
     'projects.comingSoon': 'Coming Soon',
     'projects.noProjectsFound': 'No projects found for the selected filters.',
     'projects.featured': 'Featured',
+    'projects.viewProject': 'View Project',
+    'projects.technologies': 'Technologies',
 
     // Blog Section
     'blog.title': 'Latest Blog Posts',
@@ -85,6 +88,8 @@ const translations = {
     'blog.viewOnMedium': 'View on Medium',
     'blog.viewAllPosts': 'View All Posts on Medium',
     'blog.unableToLoad': 'Unable to load blog posts at the moment. Check out my Medium profile directly!',
+    'blog.readMore': 'Read More',
+    'blog.publishedOn': 'Published on',
 
     // Footer
     'footer.copyright': '© 2024 Madeleine Farr. Built with ❤️ using Next.js and TypeScript.',
@@ -102,6 +107,21 @@ const translations = {
     // Activity
     'activity.justNow': 'Just now',
 
+    // Languages Section
+    'languages.title': 'Languages',
+    'languages.description': 'My language learning journey. Tracking progress through the CEFR levels with hours of study.',
+    'languages.progressToNext': 'Progress to next level',
+    'languages.hoursStudied': 'h studied',
+    'languages.hoursToNext': 'h to next level',
+    'languages.nativeSpeaker': 'Native Speaker',
+    'languages.cefrLevels': 'CEFR Language Levels',
+    'languages.beginner': 'Beginner',
+    'languages.elementary': 'Elementary',
+    'languages.intermediate': 'Intermediate',
+    'languages.upperIntermediate': 'Upper Intermediate',
+    'languages.advanced': 'Advanced',
+    'languages.mastery': 'Mastery',
+
     // Language Switcher
     'language.en': 'English',
     'language.de': 'Deutsch',
@@ -111,6 +131,7 @@ const translations = {
     'nav.home': 'Startseite',
     'nav.about': 'Über mich',
     'nav.skills': 'Fähigkeiten',
+    'nav.languages': 'Sprachen',
     'nav.experience': 'Erfahrung',
     'nav.projects': 'Projekte',
     'nav.blog': 'Blog',
@@ -169,6 +190,8 @@ const translations = {
     'projects.comingSoon': 'Demnächst verfügbar',
     'projects.noProjectsFound': 'Keine Projekte für die ausgewählten Filter gefunden.',
     'projects.featured': 'Empfohlen',
+    'projects.viewProject': 'Projekt ansehen',
+    'projects.technologies': 'Technologien',
 
     // Blog Section
     'blog.title': 'Neueste Blog-Beiträge',
@@ -177,6 +200,8 @@ const translations = {
     'blog.viewOnMedium': 'Auf Medium ansehen',
     'blog.viewAllPosts': 'Alle Beiträge auf Medium ansehen',
     'blog.unableToLoad': 'Blog-Beiträge können derzeit nicht geladen werden. Schauen Sie sich mein Medium-Profil direkt an!',
+    'blog.readMore': 'Weiterlesen',
+    'blog.publishedOn': 'Veröffentlicht am',
 
     // Footer
     'footer.copyright': '© 2024 Madeleine Farr. Erstellt mit ❤️ mit Next.js und TypeScript.',
@@ -193,6 +218,21 @@ const translations = {
 
     // Activity
     'activity.justNow': 'Gerade eben',
+
+    // Languages Section
+    'languages.title': 'Sprachen',
+    'languages.description': 'Meine Sprachlernreise. Verfolgung des Fortschritts durch die CEFR-Stufen mit Studienstunden.',
+    'languages.progressToNext': 'Fortschritt zur nächsten Stufe',
+    'languages.hoursStudied': 'h gelernt',
+    'languages.hoursToNext': 'h zur nächsten Stufe',
+    'languages.nativeSpeaker': 'Muttersprachler',
+    'languages.cefrLevels': 'CEFR Sprachstufen',
+    'languages.beginner': 'Anfänger',
+    'languages.elementary': 'Grundstufe',
+    'languages.intermediate': 'Mittelstufe',
+    'languages.upperIntermediate': 'Obere Mittelstufe',
+    'languages.advanced': 'Fortgeschritten',
+    'languages.mastery': 'Meisterschaft',
 
     // Language Switcher
     'language.en': 'English',

@@ -168,8 +168,6 @@ export function CurrentlyWorkingOn({
     url: activity.url || '#'
   }));
 
-  const recentGitHubActivity = githubActivities.slice(0, 8); // Show more GitHub activities since they're smaller
-
   if (loading) {
     return (
       <section 
@@ -195,19 +193,21 @@ export function CurrentlyWorkingOn({
             {t('currentlyWorking.title')}
           </h2>
           <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: '2fr 1fr', 
-            gap: 'var(--spacing-xl)',
-            alignItems: 'start'
+            display: 'flex', 
+            flexDirection: 'column',
+            alignItems: 'center',
+            maxWidth: '800px',
+            margin: '0 auto'
           }}>
             {/* Projects Loading */}
-            <div>
+            <div style={{ width: '100%' }}>
               <div style={{ 
                 height: '1.5rem', 
                 backgroundColor: 'var(--color-secondary)', 
                 borderRadius: 'var(--radius-sm)', 
                 marginBottom: 'var(--spacing-lg)',
                 width: '40%',
+                margin: '0 auto',
                 animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
               }}></div>
               {[...Array(3)].map((_, i) => (
@@ -236,40 +236,6 @@ export function CurrentlyWorkingOn({
               ))}
             </div>
 
-            {/* GitHub Activity Loading */}
-            <div>
-              <div style={{ 
-                height: '1.25rem', 
-                backgroundColor: 'var(--color-secondary)', 
-                borderRadius: 'var(--radius-sm)', 
-                marginBottom: 'var(--spacing-md)',
-                width: '60%',
-                animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-              }}></div>
-              {[...Array(6)].map((_, i) => (
-                <div key={i} style={{ 
-                  backgroundColor: 'var(--color-bg)',
-                  borderRadius: 'var(--radius-md)',
-                  padding: 'var(--spacing-sm)',
-                  marginBottom: 'var(--spacing-sm)',
-                  animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-                }}>
-                  <div style={{ 
-                    height: '0.75rem', 
-                    backgroundColor: 'var(--color-secondary)', 
-                    borderRadius: 'var(--radius-sm)', 
-                    marginBottom: 'var(--spacing-xs)',
-                    width: '80%' 
-                  }}></div>
-                  <div style={{ 
-                    height: '0.5rem', 
-                    backgroundColor: 'var(--color-secondary)', 
-                    borderRadius: 'var(--radius-sm)', 
-                    width: '60%' 
-                  }}></div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -321,18 +287,20 @@ export function CurrentlyWorkingOn({
         )}
 
         <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: '2fr 1fr', 
-          gap: 'var(--spacing-xl)',
-          alignItems: 'start'
+          display: 'flex', 
+          flexDirection: 'column',
+          alignItems: 'center',
+          maxWidth: '800px',
+          margin: '0 auto'
         }}>
-          {/* Main Projects Column */}
-          <div>
+          {/* Projects Section */}
+          <div style={{ width: '100%' }}>
             <h3 style={{ 
               fontSize: 'var(--font-size-xl)', 
               fontWeight: '600',
               color: 'var(--color-text-primary)',
-              marginBottom: 'var(--spacing-lg)'
+              marginBottom: 'var(--spacing-lg)',
+              textAlign: 'center'
             }}>
               {t('currentlyWorking.projects')}
             </h3>
@@ -347,7 +315,7 @@ export function CurrentlyWorkingOn({
                   <div
                     key={index}
                     style={{ 
-                      backgroundColor: 'var(--color-bg)',
+                      backgroundColor: 'var(--color-card-bg)',
                       borderRadius: 'var(--radius-lg)',
                       padding: 'var(--spacing-lg)',
                       boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
@@ -448,109 +416,8 @@ export function CurrentlyWorkingOn({
             )}
           </div>
 
-          {/* GitHub Activity Column */}
-          <div>
-            <h3 style={{ 
-              fontSize: 'var(--font-size-lg)', 
-              fontWeight: '600',
-              color: 'var(--color-text-primary)',
-              marginBottom: 'var(--spacing-md)'
-            }}>
-              {t('currentlyWorking.githubActivity')}
-            </h3>
-            
-            {recentGitHubActivity.length > 0 ? (
-              <div style={{ 
-                display: 'flex', 
-                flexDirection: 'column', 
-                gap: 'var(--spacing-sm)' 
-              }}>
-                {recentGitHubActivity.map((activity, index) => (
-                  <div
-                    key={index}
-                    style={{ 
-                      backgroundColor: 'var(--color-bg)',
-                      borderRadius: 'var(--radius-md)',
-                      padding: 'var(--spacing-sm)',
-                      border: '1px solid var(--color-border)',
-                      transition: 'all 0.2s ease',
-                      cursor: 'pointer',
-                      fontSize: 'var(--font-size-sm)'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'var(--color-secondary)';
-                      e.currentTarget.style.transform = 'translateX(4px)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'var(--color-bg)';
-                      e.currentTarget.style.transform = 'translateX(0)';
-                    }}
-                    onClick={() => activity.url && window.open(activity.url, '_blank')}
-                  >
-                    <div style={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      gap: 'var(--spacing-xs)' 
-                    }}>
-                      <span style={{ fontSize: '1rem' }}>
-                        {getActivityIcon(activity.type)}
-                      </span>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <p style={{ 
-                          color: 'var(--color-text-primary)',
-                          fontWeight: '500',
-                          marginBottom: 'var(--spacing-xs)',
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis'
-                        }}>
-                          {activity.title}
-                        </p>
-                        {activity.description && (
-                          <p style={{ 
-                            color: 'var(--color-text-secondary)',
-                            fontSize: 'var(--font-size-xs)',
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis'
-                          }}>
-                            {activity.description}
-                          </p>
-                        )}
-                        <p style={{ 
-                          color: 'var(--color-text-secondary)',
-                          fontSize: 'var(--font-size-xs)',
-                          marginTop: 'var(--spacing-xs)'
-                        }}>
-                          {formatTimeAgo(activity.timestamp)}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div style={{ 
-                textAlign: 'center', 
-                padding: 'var(--spacing-md)', 
-                color: 'var(--color-text-secondary)',
-                fontSize: 'var(--font-size-sm)'
-              }}>
-                <p>{t('currentlyWorking.noGitHubActivity')}</p>
-              </div>
-            )}
-          </div>
         </div>
 
-        {customProjects.length === 0 && recentGitHubActivity.length === 0 && !loading && !error && (
-          <div style={{ 
-            textAlign: 'center', 
-            padding: 'var(--spacing-xl)', 
-            color: 'var(--color-text-secondary)' 
-          }}>
-            <p>{t('currentlyWorking.noActivity')}</p>
-          </div>
-        )}
       </div>
     </section>
   );

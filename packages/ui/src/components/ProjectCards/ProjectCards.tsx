@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { cn } from '../../utils/cn';
+import { useLanguage } from '../../context/LanguageContext';
 import '../../theme/tokens.css';
 
 interface Project {
@@ -90,16 +91,17 @@ export function ProjectCards({
   className, 
   showFilters = true 
 }: ProjectCardsProps) {
+  const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [showFeatured, setShowFeatured] = useState(false);
 
   const categories = [
-    { id: 'all', name: 'All Projects' },
-    { id: 'web', name: 'Web Apps' },
-    { id: 'mobile', name: 'Mobile Apps' },
-    { id: 'api', name: 'APIs' },
-    { id: 'tool', name: 'Tools' },
-    { id: 'other', name: 'Other' }
+    { id: 'all', name: t('projects.allProjects') },
+    { id: 'web', name: t('projects.webApps') },
+    { id: 'mobile', name: t('projects.mobileApps') },
+    { id: 'api', name: t('projects.apis') },
+    { id: 'tool', name: t('projects.tools') },
+    { id: 'other', name: t('projects.other') }
   ];
 
   const filteredProjects = projects.filter(project => {
@@ -129,7 +131,7 @@ export function ProjectCards({
           marginBottom: 'var(--spacing-md)',
           color: 'var(--color-text-primary)' 
         }}>
-          My Projects
+          {t('projects.title')}
         </h2>
         <p style={{ 
           textAlign: 'center', 
@@ -139,7 +141,7 @@ export function ProjectCards({
           marginRight: 'auto',
           color: 'var(--color-text-secondary)' 
         }}>
-          Here are some of the projects I've worked on. Each one represents a unique challenge and learning experience.
+          {t('projects.description')}
         </p>
 
         {showFilters && (
@@ -206,7 +208,7 @@ export function ProjectCards({
                 }
               }}
             >
-              Featured Only
+              {t('projects.featuredOnly')}
             </button>
           </div>
         )}
@@ -222,7 +224,7 @@ export function ProjectCards({
             <article 
               key={project.id}
               style={{ 
-                backgroundColor: 'var(--color-bg)',
+                backgroundColor: 'var(--color-card-bg)',
                 borderRadius: 'var(--radius-lg)',
                 boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
                 overflow: 'hidden',
@@ -294,7 +296,7 @@ export function ProjectCards({
                       borderRadius: '9999px',
                       fontWeight: '600'
                     }}>
-                      Featured
+                      {t('projects.featured')}
                     </span>
                   </div>
                 )}
@@ -371,7 +373,7 @@ export function ProjectCards({
                       onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
                       onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
                     >
-                      Live Demo
+                      {t('projects.liveDemo')}
                     </a>
                   )}
                   
@@ -396,7 +398,7 @@ export function ProjectCards({
                       onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--color-secondary)'}
                       onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                     >
-                      GitHub
+                      {t('projects.github')}
                     </a>
                   )}
                   
@@ -414,7 +416,7 @@ export function ProjectCards({
                       backgroundColor: 'var(--color-muted)',
                       color: 'var(--color-text-secondary)'
                     }}>
-                      Coming Soon
+                      {t('projects.comingSoon')}
                     </div>
                   )}
                 </div>
@@ -426,7 +428,7 @@ export function ProjectCards({
         {filteredProjects.length === 0 && (
           <div style={{ textAlign: 'center', paddingTop: 'var(--spacing-xl)', paddingBottom: 'var(--spacing-xl)' }}>
             <p style={{ color: 'var(--color-text-secondary)' }}>
-              No projects found for the selected filters.
+              {t('projects.noProjectsFound')}
             </p>
           </div>
         )}

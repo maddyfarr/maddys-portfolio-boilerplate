@@ -33,6 +33,7 @@ export const Navigation = ({
     { href: '#home', label: t('nav.home') },
     { href: '#about', label: t('nav.about') },
     { href: '#skills', label: t('nav.skills') },
+    { href: '#languages', label: t('nav.languages') },
     { href: '#blog', label: t('nav.blog') },
     { href: '#experience', label: t('nav.experience') },
     { href: '#projects', label: t('nav.projects') },

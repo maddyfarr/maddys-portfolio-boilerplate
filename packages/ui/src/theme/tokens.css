@@ -2,10 +2,12 @@
   /* Base Colors */
   --color-primary: #2563eb;
   --color-primary-rgb: 37, 99, 235;
-  --color-secondary: #f3f4f6;
+  --color-secondary: #f7f6f3;
   --color-accent: #f59e0b;
-  --color-bg: #ffffff;
+  --color-bg: #f7f6f3;
   --color-bg-rgb: 255, 255, 255;
+  --color-card-bg: #ffffff;
+  --color-card-bg-alt: #f7f6f3;
   --color-fg: #111827;
   
   /* Typography Colors */
@@ -44,6 +46,8 @@
   --color-accent: #facc15;
   --color-bg: #111827;
   --color-bg-rgb: 17, 24, 39;
+  --color-card-bg: #1f2937;
+  --color-card-bg-alt: #374151;
   --color-fg: #ffffff;
   
   /* Typography Colors - Dark Mode */
