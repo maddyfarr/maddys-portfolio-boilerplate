@@ -122,6 +122,14 @@ const translations = {
     'languages.advanced': 'Advanced',
     'languages.mastery': 'Mastery',
 
+    // Contact Section
+    'contact.title': 'Get In Touch',
+    'contact.description': "I'm always interested in hearing about new opportunities and exciting projects. Feel free to reach out!",
+    'contact.email': 'Email',
+    'contact.clickToEmail': 'Click to send an email',
+    'contact.availability': 'Availability',
+    'contact.availabilityDescription': 'I\'m currently available for freelance work and full-time opportunities. Let\'s discuss how we can work together!',
+
     // Language Switcher
     'language.en': 'English',
     'language.de': 'Deutsch',
@@ -233,6 +241,14 @@ const translations = {
     'languages.upperIntermediate': 'Obere Mittelstufe',
     'languages.advanced': 'Fortgeschritten',
     'languages.mastery': 'Meisterschaft',
+
+    // Contact Section
+    'contact.title': 'Kontakt',
+    'contact.description': 'Ich bin immer interessiert an neuen Möglichkeiten und spannenden Projekten. Zögern Sie nicht, sich zu melden!',
+    'contact.email': 'E-Mail',
+    'contact.clickToEmail': 'Klicken Sie, um eine E-Mail zu senden',
+    'contact.availability': 'Verfügbarkeit',
+    'contact.availabilityDescription': 'Ich bin derzeit für Freelance-Arbeit und Vollzeitmöglichkeiten verfügbar. Lassen Sie uns besprechen, wie wir zusammenarbeiten können!',
 
     // Language Switcher
     'language.en': 'English',

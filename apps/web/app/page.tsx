@@ -11,6 +11,7 @@ import {
   BlogSection,
   CurrentlyWorkingOn,
   LanguageProgress,
+  Contact,
   GitHubCommitBubble,
   LanguageProvider,
   useLanguage
@@ -279,7 +280,16 @@ function HomeContent() {
       </section>
 
       {/* Contact Section */}
-      {/* <ContactForm /> */}
+      <section id="contact" className={styles.section}>
+        <div className={styles.sectionContent}>
+          <Contact 
+            className="w-full"
+            email="madeleinefarr98@gmail.com"
+            sectionBackground="white"
+          />
+        </div>
+      </section>
+
       <footer className={styles.footer}>
         <div style={{ textAlign: 'center', padding: '2rem 0' }}>
           <p className="mb-4" style={{ color: 'var(--color-text-secondary)' }}>
