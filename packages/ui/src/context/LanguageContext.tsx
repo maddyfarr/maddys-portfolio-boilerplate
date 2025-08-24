@@ -21,7 +21,6 @@ const translations = {
     'nav.skills': 'Skills',
     'nav.languages': 'Languages',
     'nav.experience': 'Experience',
-    'nav.projects': 'Projects',
     'nav.blog': 'Blog',
     'nav.contact': 'Contact',
 
@@ -44,7 +43,6 @@ const translations = {
     'skills.tools': 'Tools',
     'skills.learning': 'Learning',
     'skills.featuredOnly': 'Featured Only',
-    'skills.proficiencyLevels': 'Proficiency Levels',
     'skills.expert': 'Expert (90-100%)',
     'skills.advanced': 'Advanced (80-89%)',
     'skills.intermediate': 'Intermediate (60-79%)',
@@ -94,16 +92,6 @@ const translations = {
     // Footer
     'footer.copyright': '© 2024 Madeleine Farr. Built with ❤️ using Next.js and TypeScript.',
 
-    // Currently Working On
-    'currentlyWorking.title': 'Currently Working On',
-    'currentlyWorking.description': "Here's what I've been up to lately. Check out my recent GitHub activity and ongoing projects.",
-    'currentlyWorking.projects': 'Current Projects',
-    'currentlyWorking.githubActivity': 'Recent GitHub Activity',
-    'currentlyWorking.error': 'Unable to load recent activity at the moment.',
-    'currentlyWorking.noActivity': 'No recent activity to show.',
-    'currentlyWorking.noProjects': 'No current projects to show.',
-    'currentlyWorking.noGitHubActivity': 'No recent GitHub activity.',
-
     // Activity
     'activity.justNow': 'Just now',
 
@@ -141,7 +129,6 @@ const translations = {
     'nav.skills': 'Fähigkeiten',
     'nav.languages': 'Sprachen',
     'nav.experience': 'Erfahrung',
-    'nav.projects': 'Projekte',
     'nav.blog': 'Blog',
     'nav.contact': 'Kontakt',
 
@@ -213,16 +200,6 @@ const translations = {
 
     // Footer
     'footer.copyright': '© 2024 Madeleine Farr. Erstellt mit ❤️ mit Next.js und TypeScript.',
-
-    // Currently Working On
-    'currentlyWorking.title': 'Aktuell arbeite ich an',
-    'currentlyWorking.description': 'Das ist, womit ich mich in letzter Zeit beschäftigt habe. Schauen Sie sich meine kürzliche GitHub-Aktivität und laufende Projekte an.',
-    'currentlyWorking.projects': 'Aktuelle Projekte',
-    'currentlyWorking.githubActivity': 'Kürzliche GitHub-Aktivität',
-    'currentlyWorking.error': 'Aktuelle Aktivität kann derzeit nicht geladen werden.',
-    'currentlyWorking.noActivity': 'Keine kürzliche Aktivität anzuzeigen.',
-    'currentlyWorking.noProjects': 'Keine aktuellen Projekte anzuzeigen.',
-    'currentlyWorking.noGitHubActivity': 'Keine kürzliche GitHub-Aktivität.',
 
     // Activity
     'activity.justNow': 'Gerade eben',

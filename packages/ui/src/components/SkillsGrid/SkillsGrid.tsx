@@ -8,7 +8,7 @@ import '../../theme/tokens.css';
 interface Skill {
   name: string;
   icon?: string;
-  proficiency: number; // 0-100
+  proficiency: number;
   category: string;
   description?: string;
 }
@@ -24,10 +24,10 @@ const defaultSkills: Skill[] = [
   // Frontend
   { name: 'React', icon: '⚛️', proficiency: 90, category: 'Frontend', description: 'Building interactive UIs with hooks and modern patterns' },
   { name: 'TypeScript', icon: '📘', proficiency: 85, category: 'Frontend', description: 'Type-safe JavaScript development' },
-  { name: 'Next.js', icon: '⚡', proficiency: 80, category: 'Frontend', description: 'Full-stack React framework' },
+  { name: 'Next.js', icon: '⚡', proficiency: 30, category: 'Frontend', description: 'Full-stack React framework' },
   
   // Backend
-  { name: 'Python', icon: '🐍', proficiency: 65, category: 'Backend', description: 'General-purpose programming' },
+  { name: 'Python FastAPI', icon: '🐍', proficiency: 50, category: 'Backend', description: 'General-purpose programming' },
   
   // Tools & Others
   { name: 'Git', icon: '📚', proficiency: 85, category: 'Tools', description: 'Version control and collaboration' },
@@ -110,38 +110,6 @@ export function SkillsGrid({
         }}>
           {t('skills.description')}
         </p>
-
-        {/* Category Filters */}
-        <div style={{ 
-          display: 'flex', 
-          flexWrap: 'wrap', 
-          justifyContent: 'center', 
-          gap: 'var(--spacing-md)', 
-          marginBottom: 'var(--spacing-xl)' 
-        }}>
-          {categories.map(category => (
-            <button
-              key={category.id}
-              onClick={() => setSelectedCategory(category.id)}
-              style={{
-                paddingLeft: 'var(--spacing-md)',
-                paddingRight: 'var(--spacing-md)',
-                paddingTop: 'var(--spacing-sm)',
-                paddingBottom: 'var(--spacing-sm)',
-                borderRadius: 'var(--radius-lg)',
-                transition: 'all 0.3s ease',
-                backgroundColor: selectedCategory === category.id ? category.color : 'transparent',
-                color: selectedCategory === category.id ? 'white' : 'var(--color-text-primary)',
-                border: selectedCategory === category.id ? 'none' : '1px solid var(--color-border)',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-            >
-              {category.name}
-            </button>
-          ))}
-        </div>
 
         {/* Skills Grid */}
         <div style={{ 
@@ -293,55 +261,6 @@ export function SkillsGrid({
             </div>
           ))}
         </div>
-
-        {/* Legend */}
-        {showProficiency && (
-          <div style={{ marginTop: 'var(--spacing-xl)', textAlign: 'center' }}>
-            <h3 style={{ 
-              fontSize: 'var(--font-size-lg)', 
-              fontWeight: '600', 
-              marginBottom: 'var(--spacing-md)',
-              color: 'var(--color-text-primary)' 
-            }}>
-              {t('skills.proficiencyLevels')}
-            </h3>
-            <div style={{ 
-              display: 'flex', 
-              flexWrap: 'wrap', 
-              justifyContent: 'center', 
-              gap: 'var(--spacing-lg)' 
-            }}>
-              {[
-                { label: t('skills.expert'), color: '#10B981' },
-                { label: t('skills.advanced'), color: '#10B981' },
-                { label: t('skills.intermediate'), color: '#F59E0B' },
-                { label: t('skills.beginner'), color: '#F97316' },
-                { label: t('skills.learningLevel'), color: '#EF4444' }
-              ].map((level, index) => (
-                <div key={index} style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: 'var(--spacing-sm)' 
-                }}>
-                  <div 
-                    style={{ 
-                      width: '0.75rem', 
-                      height: '0.75rem', 
-                      borderRadius: '50%',
-                      backgroundColor: level.color 
-                    }}
-                  />
-                  <span style={{ 
-                    fontSize: 'var(--font-size-sm)',
-                    color: 'var(--color-text-secondary)' 
-                  }}>
-                    {level.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
         {filteredSkills.length === 0 && (
           <div style={{ textAlign: 'center', paddingTop: 'var(--spacing-xl)', paddingBottom: 'var(--spacing-xl)' }}>

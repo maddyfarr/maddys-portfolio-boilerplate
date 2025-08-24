@@ -69,11 +69,4 @@ export const Small: Story = {
   },
 };
 
-export const MaddysStory: Story = {
-  args: {
-    variant: 'secondary',
-    label: "Button"
-  }
-};
-
 

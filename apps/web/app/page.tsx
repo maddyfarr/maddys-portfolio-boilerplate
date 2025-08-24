@@ -4,14 +4,12 @@ import Image, { type ImageProps } from "next/image";
 import { 
   Button, 
   Typography, 
-  Navigation, 
-  ProjectCards, 
+  Navigation,  
   SkillsGrid, 
   SocialLinks,
   BlogSection,
-  CurrentlyWorkingOn,
   LanguageProgress,
-  Contact,
+  ContactForm,
   GitHubCommitBubble,
   LanguageProvider,
   useLanguage
@@ -79,39 +77,6 @@ function HomeContent() {
         </div>
       </section>
 
-      {/* Currently Working On Section */}
-      <section id="currently-working" className={styles.section}>
-        <div className={styles.sectionContent}>
-          <CurrentlyWorkingOn 
-            className="w-full"
-            githubUsername="maddyfarr"
-            customActivities={[
-              {
-                type: 'project',
-                title: 'Portfolio Website Enhancement',
-                description: 'Adding new features like language switching, GitHub integration, and interactive components.',
-                status: 'in-progress',
-                tech: ['React', 'TypeScript', 'Next.js', 'Design Tokens']
-              },
-              {
-                type: 'learning',
-                title: 'Advanced React Patterns',
-                description: 'Exploring compound components, render props, and advanced state management techniques.',
-                status: 'in-progress',
-                tech: ['React', 'TypeScript', 'Advanced Patterns']
-              },
-              {
-                type: 'experiment',
-                title: 'AI-Powered Code Assistant',
-                description: 'Building a tool that helps developers write better code using AI suggestions.',
-                status: 'planning',
-                tech: ['Python', 'OpenAI API', 'React', 'FastAPI']
-              }
-            ]}
-          />
-        </div>
-      </section>
-
       {/* Skills Section */}
       <section id="skills" className={styles.section}>
         <div className={styles.sectionContent}>
@@ -146,6 +111,13 @@ function HomeContent() {
               }
             ]}
           />
+          <div style={{ textAlign: 'center', marginTop: 'var(--spacing-lg)' }}>
+            <Button 
+              variant="secondary" 
+              label="🇩🇪 View German Learning Tracker" 
+              onClick={() => window.open('http://localhost:3001', '_blank')}
+            />
+          </div>
         </div>
       </section>
 
@@ -272,20 +244,11 @@ function HomeContent() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className={styles.section}>
-        <div className={styles.sectionContent}>
-          <ProjectCards className="w-full" />
-        </div>
-      </section>
 
       {/* Contact Section */}
       <section id="contact" className={styles.section}>
         <div className={styles.sectionContent}>
-          <Contact 
-            className="w-full"
-            email="madeleinefarr98@gmail.com"
-            sectionBackground="white"
+          <ContactForm
           />
         </div>
       </section>

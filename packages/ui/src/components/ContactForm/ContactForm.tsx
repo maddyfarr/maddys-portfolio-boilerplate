@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from 'react';
 import { cn } from '../../utils/cn';
 import '../../theme/tokens.css';
 
@@ -15,13 +14,6 @@ interface ContactData {
   email: string;
   subject: string;
   message: string;
-}
-
-interface FormErrors {
-  name?: string;
-  email?: string;
-  subject?: string;
-  message?: string;
 }
 
 const socialLinks = [
@@ -63,83 +55,7 @@ const socialLinks = [
   }
 ];
 
-export function ContactForm({ 
-  className, 
-  onSubmit,
-  showSocialLinks = true 
-}: ContactFormProps) {
-  const [formData, setFormData] = useState<ContactData>({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-  const validateForm = (): boolean => {
-    const newErrors: FormErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-
-    if (!formData.subject.trim()) {
-      newErrors.subject = 'Subject is required';
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    } else if (formData.message.length < 10) {
-      newErrors.message = 'Message must be at least 10 characters long';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
-
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    try {
-      if (onSubmit) {
-        await onSubmit(formData);
-      } else {
-        // Default email handling using mailto
-        const mailtoUrl = `mailto:your.email@example.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
-        window.open(mailtoUrl);
-      }
-      
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleInputChange = (field: keyof ContactData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
-    }
-  };
+export function ContactForm({ className }: ContactFormProps) {
 
   return (
     <section className={cn("py-16", className)}>
@@ -147,240 +63,14 @@ export function ContactForm({
         <h2 className="text-3xl font-bold text-center mb-4" style={{ color: 'var(--color-text-primary)' }}>
           Get In Touch
         </h2>
-        <p className="text-center mb-12 max-w-2xl mx-auto" style={{ color: 'var(--color-text-secondary)' }}>
-          I'm always interested in hearing about new opportunities and exciting projects. 
-          Feel free to reach out!
-        </p>
+        {
+          socialLinks.map((link) => (
+            <a href={link.url} key={link.name}>
+              {link.icon}
+            </a>
+          ))
+        }
 
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div className="bg-white rounded-lg shadow-lg p-8" style={{ backgroundColor: 'var(--color-bg)' }}>
-              <h3 className="text-2xl font-semibold mb-6" style={{ color: 'var(--color-text-primary)' }}>
-                Send a Message
-              </h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label 
-                    htmlFor="name" 
-                    className="block text-sm font-medium mb-2"
-                    style={{ color: 'var(--color-text-primary)' }}
-                  >
-                    Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    value={formData.name}
-                    onChange={(e) => handleInputChange('name', e.target.value)}
-                    className={cn(
-                      "w-full px-4 py-3 rounded-lg border transition-colors duration-200",
-                      errors.name ? "border-red-500" : "border-gray-300 focus:border-primary"
-                    )}
-                    style={{ 
-                      backgroundColor: 'var(--color-bg)',
-                      color: 'var(--color-text-primary)'
-                    }}
-                    placeholder="Your name"
-                  />
-                  {errors.name && (
-                    <p className="mt-1 text-sm text-red-500">{errors.name}</p>
-                  )}
-                </div>
-
-                <div>
-                  <label 
-                    htmlFor="email" 
-                    className="block text-sm font-medium mb-2"
-                    style={{ color: 'var(--color-text-primary)' }}
-                  >
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
-                    className={cn(
-                      "w-full px-4 py-3 rounded-lg border transition-colors duration-200",
-                      errors.email ? "border-red-500" : "border-gray-300 focus:border-primary"
-                    )}
-                    style={{ 
-                      backgroundColor: 'var(--color-bg)',
-                      color: 'var(--color-text-primary)'
-                    }}
-                    placeholder="your.email@example.com"
-                  />
-                  {errors.email && (
-                    <p className="mt-1 text-sm text-red-500">{errors.email}</p>
-                  )}
-                </div>
-
-                <div>
-                  <label 
-                    htmlFor="subject" 
-                    className="block text-sm font-medium mb-2"
-                    style={{ color: 'var(--color-text-primary)' }}
-                  >
-                    Subject *
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    value={formData.subject}
-                    onChange={(e) => handleInputChange('subject', e.target.value)}
-                    className={cn(
-                      "w-full px-4 py-3 rounded-lg border transition-colors duration-200",
-                      errors.subject ? "border-red-500" : "border-gray-300 focus:border-primary"
-                    )}
-                    style={{ 
-                      backgroundColor: 'var(--color-bg)',
-                      color: 'var(--color-text-primary)'
-                    }}
-                    placeholder="What's this about?"
-                  />
-                  {errors.subject && (
-                    <p className="mt-1 text-sm text-red-500">{errors.subject}</p>
-                  )}
-                </div>
-
-                <div>
-                  <label 
-                    htmlFor="message" 
-                    className="block text-sm font-medium mb-2"
-                    style={{ color: 'var(--color-text-primary)' }}
-                  >
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={5}
-                    value={formData.message}
-                    onChange={(e) => handleInputChange('message', e.target.value)}
-                    className={cn(
-                      "w-full px-4 py-3 rounded-lg border transition-colors duration-200 resize-none",
-                      errors.message ? "border-red-500" : "border-gray-300 focus:border-primary"
-                    )}
-                    style={{ 
-                      backgroundColor: 'var(--color-bg)',
-                      color: 'var(--color-text-primary)'
-                    }}
-                    placeholder="Tell me about your project or opportunity..."
-                  />
-                  {errors.message && (
-                    <p className="mt-1 text-sm text-red-500">{errors.message}</p>
-                  )}
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                  style={{ 
-                    backgroundColor: 'var(--color-primary)',
-                    color: 'white'
-                  }}
-                >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </button>
-
-                {submitStatus === 'success' && (
-                  <div className="p-4 rounded-lg bg-green-50 border border-green-200">
-                    <p className="text-green-800">Message sent successfully! I'll get back to you soon.</p>
-                  </div>
-                )}
-
-                {submitStatus === 'error' && (
-                  <div className="p-4 rounded-lg bg-red-50 border border-red-200">
-                    <p className="text-red-800">Failed to send message. Please try again or contact me directly.</p>
-                  </div>
-                )}
-              </form>
-            </div>
-
-            {/* Contact Info & Social Links */}
-            <div className="space-y-8">
-              <div className="bg-white rounded-lg shadow-lg p-8" style={{ backgroundColor: 'var(--color-bg)' }}>
-                <h3 className="text-2xl font-semibold mb-6" style={{ color: 'var(--color-text-primary)' }}>
-                  Contact Information
-                </h3>
-                
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center"
-                         style={{ backgroundColor: 'var(--color-primary)' }}>
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-medium" style={{ color: 'var(--color-text-primary)' }}>Email</p>
-                      <p style={{ color: 'var(--color-text-secondary)' }}>your.email@example.com</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center"
-                         style={{ backgroundColor: 'var(--color-primary)' }}>
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-medium" style={{ color: 'var(--color-text-primary)' }}>Location</p>
-                      <p style={{ color: 'var(--color-text-secondary)' }}>Your City, Country</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center"
-                         style={{ backgroundColor: 'var(--color-primary)' }}>
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-medium" style={{ color: 'var(--color-text-primary)' }}>Response Time</p>
-                      <p style={{ color: 'var(--color-text-secondary)' }}>Usually within 24 hours</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {showSocialLinks && (
-                <div className="bg-white rounded-lg shadow-lg p-8" style={{ backgroundColor: 'var(--color-bg)' }}>
-                  <h3 className="text-2xl font-semibold mb-6" style={{ color: 'var(--color-text-primary)' }}>
-                    Connect With Me
-                  </h3>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    {socialLinks.map((social) => (
-                      <a
-                        key={social.name}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center space-x-3 p-4 rounded-lg border transition-all duration-300 hover:shadow-md hover:-translate-y-1"
-                        style={{ 
-                          borderColor: 'var(--color-border)',
-                          color: 'var(--color-text-primary)'
-                        }}
-                      >
-                        <div className="w-8 h-8 flex items-center justify-center"
-                             style={{ color: 'var(--color-primary)' }}>
-                          {social.icon}
-                        </div>
-                        <span className="font-medium">{social.name}</span>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

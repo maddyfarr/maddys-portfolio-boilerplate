@@ -1,0 +1,4 @@
+2025-08-24T21:00:28.686338Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2025-08-24T21:04:57.155388Z  WARN turborepo_filewatch: failed to remove cookie file failed to remove file `C:\Users\Maddy\Documents\Projects\maddys-portfolio-boilerplate\.turbo\cookies\.turbo-cookie`
+2025-08-24T21:04:57.195084Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2025-08-24T21:04:57.242395Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running

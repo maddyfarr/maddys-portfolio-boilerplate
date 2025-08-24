@@ -7,7 +7,6 @@ import { Button } from '../Button/Button';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
 import { LanguageSwitcher } from '../LanguageSwitcher/LanguageSwitcher';
 import { useLanguage } from '../../context/LanguageContext';
-import { AnimatedLogo } from '../AnimatedLogo/AnimatedLogo';
 import './navigation.css';
 
 interface NavLink {
@@ -36,7 +35,6 @@ export const Navigation = ({
     { href: '#languages', label: t('nav.languages') },
     { href: '#blog', label: t('nav.blog') },
     { href: '#experience', label: t('nav.experience') },
-    { href: '#projects', label: t('nav.projects') },
     { href: '#contact', label: t('nav.contact') }
   ];
 

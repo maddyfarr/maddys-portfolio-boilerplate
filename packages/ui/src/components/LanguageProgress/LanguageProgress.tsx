@@ -366,60 +366,6 @@ export function LanguageProgress({
           })}
         </div>
 
-        {/* CEFR Levels Legend */}
-        <div style={{ marginTop: 'var(--spacing-xl)', textAlign: 'center' }}>
-          <h3 style={{ 
-            fontSize: 'var(--font-size-lg)', 
-            fontWeight: '600', 
-            marginBottom: 'var(--spacing-md)',
-            color: 'var(--color-text-primary)' 
-          }}>
-            {t('languages.cefrLevels')}
-          </h3>
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-            gap: 'var(--spacing-md)',
-            maxWidth: '600px',
-            margin: '0 auto'
-          }}>
-            {Object.entries(cefrLevels).filter(([key]) => key !== 'Native').map(([level, info]) => (
-              <div key={level} style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: 'var(--spacing-sm)',
-                padding: 'var(--spacing-sm)',
-                backgroundColor: getCardBackground(),
-                borderRadius: 'var(--radius-sm)',
-                border: '1px solid var(--color-border)'
-              }}>
-                <div 
-                  style={{ 
-                    width: '0.75rem', 
-                    height: '0.75rem', 
-                    borderRadius: '50%',
-                    backgroundColor: info.color 
-                  }}
-                />
-                <div>
-                  <span style={{ 
-                    fontSize: 'var(--font-size-sm)',
-                    fontWeight: '600',
-                    color: 'var(--color-text-primary)'
-                  }}>
-                    {level}
-                  </span>
-                  <div style={{ 
-                    fontSize: 'var(--font-size-xs)',
-                    color: 'var(--color-text-secondary)'
-                  }}>
-                    {info.name} ({info.hours}h)
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
