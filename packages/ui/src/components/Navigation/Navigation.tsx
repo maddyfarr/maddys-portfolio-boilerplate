@@ -76,21 +76,6 @@ export const Navigation = ({
       className
     )}>
       <div className="navigation__container">
-        {/* Logo */}
-        <div className="navigation__logo">
-          <button
-            onClick={() => handleNavClick('#home')}
-            className="navigation__logo-button"
-          >
-            <Image
-              src="/initial-logo.png"
-              alt="Madeleine Farr"
-              width={60}
-              height={60}
-              priority
-            />
-          </button>
-        </div>
 
         {/* Desktop Navigation */}
         <div className="navigation__desktop">

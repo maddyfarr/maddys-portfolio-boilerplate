@@ -105,9 +105,6 @@ export function GitHubCommitBubble({
     <div 
       className={className} 
       style={{ 
-        position: 'absolute',
-        top: '25%',
-        left: '50%',
         transform: 'translateX(-50%)',
         zIndex: 1000,
         pointerEvents: 'none'
@@ -128,7 +125,7 @@ export function GitHubCommitBubble({
         transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
         pointerEvents: 'auto',
         cursor: 'pointer',
-        zIndex: 10
+        zIndex: 10,
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'scale(1.05)';
@@ -140,24 +137,11 @@ export function GitHubCommitBubble({
       }}
       onClick={() => latestCommit.url && window.open(latestCommit.url, '_blank')}
       >
-        {/* Speech Bubble Tail */}
-        <div style={{
-          position: 'absolute',
-          bottom: '-8px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: 0,
-          height: 0,
-          borderLeft: '8px solid transparent',
-          borderRight: '8px solid transparent',
-          borderTop: '8px solid var(--color-card-bg)',
-          zIndex: 11
-        }} />
         
         {/* Tail Border */}
         <div style={{
           position: 'absolute',
-          bottom: '-10px',
+          bottom: '-9px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: 0,
@@ -172,39 +156,33 @@ export function GitHubCommitBubble({
         <div style={{ 
           display: 'flex', 
           alignItems: 'center', 
-          gap: '8px', 
-          marginBottom: '8px' 
-        }}>
-          <span style={{ fontSize: '1rem' }}>☕</span>
-          <span style={{ 
-            color: 'var(--color-text-primary)',
-            fontWeight: '600',
-            fontSize: 'var(--font-size-sm)'
-          }}>
-            Latest Commit
-          </span>
-        </div>
-        
-        <p style={{ 
-          color: 'var(--color-text-primary)',
+          padding: '5px',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          fontWeight: '600',
           fontSize: 'var(--font-size-sm)',
-          lineHeight: '1.4',
-          margin: '0 0 6px 0',
-          fontWeight: '500'
+          textAlign: 'center'
         }}>
-          {truncateMessage(latestCommit.message)}
-        </p>
-        
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center',
-          fontSize: 'var(--font-size-xs)',
-          color: 'var(--color-text-secondary)'
-        }}>
-          <span>{latestCommit.repo}</span>
-          <span>{formatTimeAgo(latestCommit.timestamp)}</span>
+            Hmmm... What am I up to?... Let's hope I wrote my commit message properly...🤞😉👇
         </div>
+        <div style={{ padding: '10px', backgroundColor: 'var(--color-secondary)', borderRadius: '5px', width: 'fit-content', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', fontSize: 'var(--font-size-xs)', fontWeight: '500', color: 'var(--color-text-secondary)' }}>
+            {'[⌚ ' + formatTimeAgo(latestCommit.timestamp) + '] ' }
+          </div>
+          <div style={{ 
+            color: 'var(--color-text-primary)',
+            fontSize: 'var(--font-size-sm)',
+            lineHeight: '1.4',
+            fontWeight: '500',
+            textAlign: 'center'
+          }}>
+            {truncateMessage(latestCommit.message)}
+          </div>
+          <div style={{ textAlign: 'center' }}>
+          {latestCommit.repo }
+          </div>
+        </div>
+        
       </div>
 
       <style>{`

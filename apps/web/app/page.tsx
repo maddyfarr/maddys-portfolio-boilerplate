@@ -15,22 +15,10 @@ import {
   useLanguage
 } from '@repo/ui';
 import styles from "./page.module.css";
-import logo from '../../public/logo.svg';
 
 type Props = Omit<ImageProps, "src"> & {
   srcLight: string;
   srcDark: string;
-};
-
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
-
-  return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
 };
 
 function HomeContent() {
@@ -40,14 +28,13 @@ function HomeContent() {
     <div className={styles.page}>
       <Navigation />
 
-      {/* GitHub Commit Bubble - Center of Page */}
-      <GitHubCommitBubble 
-        githubUsername="maddyfarr"
-      />
-
       {/* Hero Section */}
-      <section id="home" className={styles.hero}>
+      <section id="home" className={styles.hero} style={{ paddingTop: '200px' }}>
         <div className={styles.heroContent}>
+        {/* GitHub Commit Bubble - Center of Page */}
+        <GitHubCommitBubble 
+          githubUsername="maddyfarr"
+        />
           <Image
             className={styles.logo}
             src="/logo.png"
@@ -60,20 +47,24 @@ function HomeContent() {
             <Typography variant="title" className="text-center">{t('hero.title')}</Typography>
             <Typography variant="subtitle" className="text-center">{t('hero.subtitle')}</Typography>
           </div>
+          <div className={styles.sectionContent}>
+          <Typography variant="body" className="text-center">
+            {t('about.description')}
+          </Typography>
+          <Typography variant="body" className="text-center">
+            {t('about.description2')}
+          </Typography>
+          <Typography variant="body" className="text-center">
+            {t('about.fromAustralia')}
+          </Typography>
+          <Typography variant="body" className="text-center">
+            {t('about.currentlyInMunich')}
+          </Typography>
+        </div>
           <div className={styles.ctas}>
             <Button variant="primary" label={t('hero.viewWork')} />
             <Button variant="secondary" label={t('hero.downloadResume')} />
           </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className={styles.section}>
-        <div className={styles.sectionContent}>
-          <Typography variant="title" className="text-center">{t('about.title')}</Typography>
-          <Typography variant="body" className="text-center">
-            {t('about.description')}
-          </Typography>
         </div>
       </section>
 
@@ -94,7 +85,7 @@ function HomeContent() {
               {
                 name: 'English',
                 code: 'en',
-                flag: '🇬🇧',
+                flag: 'AU',
                 level: 'Native',
                 description: 'Mother tongue - Fluent in speaking, reading, and writing',
                 isNative: true
@@ -103,8 +94,8 @@ function HomeContent() {
                 name: 'German',
                 code: 'de',
                 flag: '🇩🇪',
-                level: 'A1',
-                subLevel: 2, // A1.2
+                level: 'A2',
+                subLevel: 1, // A1.2
                 hoursStudied: 45,
                 targetHours: 1000, // Approximate hours to reach C2
                 description: 'Learning German for travel and cultural exchange'

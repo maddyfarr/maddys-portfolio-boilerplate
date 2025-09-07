@@ -32,8 +32,10 @@ const translations = {
 
     // About Section
     'about.title': 'About Me',
-    'about.description': "I'm a passionate software engineer who loves building beautiful, accessible user experiences. I specialize in React, TypeScript, and modern web technologies.",
-
+    'about.description': "Hey there! 👋 My name is Maddy and I'm a software engineer who loves building user experiences. I specialize in React, TypeScript, and modern web technologies.",
+    'about.description2': "I'm originally from Australia, but I'm setting up shop in Munich, Germany. I'm currently working as a software engineer at a startup called 'Aampere'.",
+    'about.fromAustralia': '🏠 Originally from Australia 🐨',
+    'about.currentlyInMunich': '📍 Currently in Munich, Germany 🥨',
     // Skills Section
     'skills.title': 'Skills & Technologies',
     'skills.description': "Here's what I work with. I'm always learning new technologies and improving my existing skills.",
@@ -141,6 +143,9 @@ const translations = {
     // About Section
     'about.title': 'Über mich',
     'about.description': 'Ich bin eine leidenschaftliche Softwareentwicklerin, die es liebt, schöne und zugängliche Benutzererfahrungen zu schaffen. Ich spezialisiere mich auf React, TypeScript und moderne Webtechnologien.',
+    'about.description2': 'Ich bin ursprünglich aus Australien, aber ich habe mein Büro in München, Deutschland eingerichtet. Ich arbeite derzeit als Softwareentwicklerin bei einer Startup namens "Aampere".',
+    'about.fromAustralia': '🏠 Ursprünglich aus Australien 🐨',
+    'about.currentlyInMunich': '📍 Derzeit in München, Deutschland 🥨',
 
     // Skills Section
     'skills.title': 'Fähigkeiten & Technologien',
